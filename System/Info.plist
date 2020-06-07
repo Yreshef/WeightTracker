@@ -53,6 +53,39 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Roboto-Black.tff</string>
+		<string>Roboto-BlackItalic.tff</string>
+		<string>Roboto-Bold.ttf</string>
+		<string>Roboto-BoldItalic.tff</string>
+		<string>Roboto-Italic.tff</string>
+		<string>Roboto-Light.tff</string>
+		<string>Roboto-LightItalic.tff</string>
+		<string>Roboto-Medium.tff</string>
+		<string>Roboto-MediumItalic.tff</string>
+		<string>Roboto-Regular.tff</string>
+		<string>Roboto-Thin.tff</string>
+		<string>Roboto-ThinItalic.tff</string>
+        <string>Montserrat-Black.tff</string>
+        <string>Montserrat-BlackItalic.tff</string>
+        <string>Montserrat-Bold.tff</string>
+        <string>Montserrat-BoldItalic.tff</string>
+        <string>Montserrat-ExtraBold.tff</string>
+        <string>Montserrat-ExtraBoldItalic.tff</string>
+        <string>Montserrat-ExtraLight.tff</string>
+        <string>Montserrat-ExtraLightItalic.tff</string>
+        <string>Montserrat-Italic.tff</string>
+        <string>Montserrat-Light.tff</string>
+        <string>Montserrat-LightItalic.tff</string>
+        <string>Montserrat-Medium.tff</string>
+        <string>Montserrat-MediumItalic.tff</string>
+        <string>Montserrat-Regular.tff</string>
+        <string>Montserrat-SemiBold.tff</string>
+        <string>Montserrat-SemiBoldItalic.tff</string>
+        <string>Montserrat-Thin.tff</string>
+        <string>Montserrat-ThinItalic.tff</string>
+	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

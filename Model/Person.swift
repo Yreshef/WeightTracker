@@ -8,7 +8,14 @@
 
 import UIKit
 
-struct Weight {
-    
-    private(set) var weight: Int
+
+
+struct Person {
+    var weight: Weight
+    var userName: String
+
+    public static let stub = Person(weight: 89, userName: "Moshe")
 }
+
+
+
