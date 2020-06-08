@@ -72,6 +72,7 @@ extension CoreDataStack {
         personMO.measurementHistory = []
         try saveContext()
     }
+    
     func retrieve(userName: String) -> Person? {
         //TODO: implement
         return nil
