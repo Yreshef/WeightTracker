@@ -16,15 +16,13 @@ class WTButton: UIButton {
     // MARK: - Properties
     //=============================
 
-    let customButton: UIButton = UIButton(type: UIButton.ButtonType.system)
-
-    let titleFont = "Montserrat-Bold"
-    let fontSize: CGFloat = 17.0
-    let color: UIColor = .white
-    let background: UIColor = .clear
-    let borderColor: UIColor = .white
-    let borderWidth: CGFloat = 1.0
-    let cornerRadius: CGFloat = 5.0
+    private let titleFont = "Montserrat-Bold"
+    private let fontSize: CGFloat = 17.0
+    private let color: UIColor = .white
+    private let background: UIColor = .clear
+    private let borderColor: UIColor = .white
+    private let borderWidth: CGFloat = 1.0
+    private let cornerRadius: CGFloat = 5.0
     
     
     // MARK: - Initializers
@@ -44,7 +42,7 @@ class WTButton: UIButton {
         
         super.init(frame: .zero)
         setupButton(font: font, titleColor: titleColor,
-                    backgroundColor: backgroundColor,
+                    bgColor: backgroundColor,
                     borderColor: borderColor, borderWidth: borderWidth,
                     cornerRadius: cornerRadius)
     }
@@ -57,27 +55,24 @@ class WTButton: UIButton {
     //=============================
 
     private func setupButton(){
-        customButton.titleLabel?.font = UIFont(name: titleFont, size: fontSize)
-        customButton.setTitleColor(color, for: UIControl.State.normal)
-        customButton.backgroundColor = background
-        customButton.layer.borderColor = borderColor.cgColor
-        customButton.layer.borderWidth = borderWidth
-        customButton.set(cornerRadius: cornerRadius)
+        self.setupButton(font: UIFont(name: titleFont, size: fontSize),
+                         titleColor: color, bgColor: background,
+                         borderColor: borderColor.cgColor, borderWidth: borderWidth, cornerRadius: cornerRadius)
     }
     
-    private func setupButton(font: UIFont,
+    private func setupButton(font: UIFont?,
                              titleColor: UIColor,
-                             backgroundColor: UIColor,
+                             bgColor: UIColor,
                              borderColor: CGColor,
                              borderWidth: CGFloat,
                              cornerRadius: CGFloat) {
         
-        customButton.titleLabel?.font = font
-        customButton.setTitleColor(titleColor, for: UIControl.State.normal)
-        customButton.backgroundColor = backgroundColor
-        customButton.layer.borderColor = borderColor
-        customButton.layer.borderWidth = borderWidth
-        customButton.set(cornerRadius: cornerRadius)
+        titleLabel?.font = font
+        setTitleColor(titleColor, for: UIControl.State.normal)
+        backgroundColor = bgColor
+        layer.borderColor = borderColor
+        layer.borderWidth = borderWidth
+        set(cornerRadius: cornerRadius)
     }
    
     private func setShadow() {
@@ -90,7 +85,7 @@ class WTButton: UIButton {
     }
     
 }
-
+//TODO: Move the animation to extension Layer {}
 extension WTButton {
     
     // MARK: - Animations

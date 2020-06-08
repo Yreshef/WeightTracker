@@ -58,6 +58,38 @@ class CoreDataStack: CoreDataLogic{
         request.predicate = predicate
         return request
     }
+    
+    private func convert(personMO: PersonMO) -> Person? {
+        guard let userName = personMO.userName else{
+            return nil
+        }
+        let person = Person(weight: personMO.weight, userName: userName)
+        return person
+    }
+    
+    private func convert(person: Person) -> PersonMO {
+        let personMO = PersonMO(context: managedContext)
+        personMO.weight = person.weight
+        personMO.userName = person.userName
+        return personMO
+    }
+    
+    private func retrievePersonMO(userName: String) -> PersonMO? {
+        let predicate = NSPredicate(format: "userName == %@", userName)
+        let request = fetchPersonRequest(predicate: predicate)
+        if let result = try? managedContext.fetch(request).first{
+            return result
+        }
+        return nil
+    }
+    
+    private func retrieveAllPersonMO() -> [PersonMO] {
+        let request = fetchPersonRequest()
+        if let results = try? managedContext.fetch(request) {
+            return results
+        }
+        return []
+    }
 }
 
 // MARK: - Protocol Implementation
@@ -66,44 +98,60 @@ class CoreDataStack: CoreDataLogic{
 extension CoreDataStack {
     
     func create(person: Person) throws {
-        
-        let personMO = PersonMO(context: managedContext)
-        personMO.weight = person.weight
-        personMO.userName = person.userName
-        personMO.measurementHistory = []
+        let personMO = convert(person: person)
         try saveContext()
     }
     
     func retrieve(userName: String) -> Person? {
-        let predicate = NSPredicate(format: "username == %@", userName)
-        //TODO: implement
+        if let personMO = retrievePersonMO(userName: userName) {
+            return convert(personMO: personMO)
+        }
         return nil
     }
+    
     func retrieveAll() -> [Person] {
-        //TODO: implement
-        return []
+        let results = retrieveAllPersonMO()
+        return results.compactMap {
+                convert(personMO: $0)
+        }
     }
+    
     func update(person: Person) throws {
-        //TODO: implement
+        guard let personMO = retrievePersonMO(userName: person.userName) else {
+            throw CoreDataError.notFound
+        }
+        personMO.weight = person.weight
+        try saveContext()
     }
+    
     func delete(userName: String) throws {
-        managedContext.deleteAllData()
-        //TODO: implement
+        //check if user exists
+        guard let personMO = retrievePersonMO(userName: userName) else {
+            throw CoreDataError.notFound
+        }
+        //delete it if it does
+        managedContext.delete(personMO)
+        try saveContext()
     }
+    
     func create(measurement: MeasurementEntry) throws {
         //TODO: implement
     }
+    
     func retrieve(day: Int, month: Int, year: Int) -> MeasurementEntry? {
         //TODO: implement
         return nil
     }
+    
     func retrieveAll() -> [MeasurementEntry] {
         //TODO: implement
         return []
     }
+    
     func update(measurementEntry: MeasurementEntry) throws {
         //TODO: implement
     }
+    
     func delete(date: Date) throws {
         //TODO: implement
     }
@@ -126,11 +174,13 @@ protocol CoreDataLogic{
 
 enum CoreDataError: LocalizedError {
     
-    case noChanges
+    case noChanges, notFound
     var errorDescription: String?{
         switch self {
         case .noChanges:
             return "No changes detected"
+        case .notFound:
+            return "The entry was not found"
         }
     }
 }
