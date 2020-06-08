@@ -20,6 +20,10 @@ public final class LoginVC: UIViewController {
     private let weightFacade: WeightFacadable
     private let databaseFacade: DatabaseFacadable
     
+    
+    let person = Person(weight: 80.0, userName: "Yohai")
+    
+    
     // MARK: - Initializers
     //=============================
     
@@ -46,7 +50,12 @@ public final class LoginVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        print("Font names:  \(UIFont.familyNames)")
+        
+        do {
+            try databaseFacade.create(person: person)
+        } catch let error as NSError {
+            print("Fetch error: \(error), Description: \(error.userInfo)")
+        }
     }
     
     public override func didReceiveMemoryWarning() {

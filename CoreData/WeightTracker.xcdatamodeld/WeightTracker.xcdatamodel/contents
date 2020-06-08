@@ -9,6 +9,11 @@
         <attribute name="userName" optional="YES" attributeType="String"/>
         <attribute name="weight" optional="YES" attributeType="Float" defaultValueString="0.0" usesScalarValueType="YES"/>
         <relationship name="measurementHistory" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="MeasurementMO" inverseName="person" inverseEntity="MeasurementMO"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="userName"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="MeasurementMO" positionX="-279.8359375" positionY="107.94140625" width="128" height="88"/>

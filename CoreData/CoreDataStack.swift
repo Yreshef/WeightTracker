@@ -66,6 +66,7 @@ class CoreDataStack: CoreDataLogic{
 extension CoreDataStack {
     
     func create(person: Person) throws {
+        
         let personMO = PersonMO(context: managedContext)
         personMO.weight = person.weight
         personMO.userName = person.userName
@@ -74,6 +75,7 @@ extension CoreDataStack {
     }
     
     func retrieve(userName: String) -> Person? {
+        let predicate = NSPredicate(format: "username == %@", userName)
         //TODO: implement
         return nil
     }
@@ -85,6 +87,7 @@ extension CoreDataStack {
         //TODO: implement
     }
     func delete(userName: String) throws {
+        managedContext.deleteAllData()
         //TODO: implement
     }
     func create(measurement: MeasurementEntry) throws {
@@ -128,6 +131,30 @@ enum CoreDataError: LocalizedError {
         switch self {
         case .noChanges:
             return "No changes detected"
+        }
+    }
+}
+
+extension NSManagedObjectContext {
+    func deleteAllData()
+    {
+        guard let persistentStore = persistentStoreCoordinator?.persistentStores.last else {
+            return
+        }
+        
+        guard let url = persistentStoreCoordinator?.url(for: persistentStore) else {
+            return
+        }
+        
+        performAndWait { () -> Void in
+            self.reset()
+            do
+            {
+                try self.persistentStoreCoordinator?.remove(persistentStore)
+                try FileManager.default.removeItem(at: url)
+                try self.persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
+            }
+            catch { /*dealing with errors up to the usage*/ }
         }
     }
 }

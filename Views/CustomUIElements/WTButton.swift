@@ -1,5 +1,5 @@
 //
-//  LoginButton.swift
+//  WTButton.swift
 //  WeightTracker
 //
 //  Created by Yohai Reshef on 06/06/2020.
@@ -16,7 +16,7 @@ class WTButton: UIButton {
     // MARK: - Properties
     //=============================
 
-    var customButton: UIButton = UIButton(type: UIButton.ButtonType.system)
+    let customButton: UIButton = UIButton(type: UIButton.ButtonType.system)
 
     let titleFont = "Montserrat-Bold"
     let fontSize: CGFloat = 17.0

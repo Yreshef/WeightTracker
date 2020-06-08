@@ -7,3 +7,14 @@
 //
 
 import Foundation
+
+class LoginService: LoginServiceable {
+    
+    
+    
+}
+
+protocol LoginServiceable {
+    
+    
+}
