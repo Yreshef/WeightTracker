@@ -19,4 +19,14 @@ extension Date {
     func getInEuropeanDateFormat() -> String?{
         return get(inFormat: "dd.MM.yyyy")
     }
+    
+    func get(_ components: Calendar.Component...,
+        calendar: Calendar = Calendar.current) -> DateComponents {
+        return calendar.dateComponents(Set(components), from: self)
+    }
+    
+    func get(_ componenet: Calendar.Component,
+             calendar: Calendar = Calendar.current) -> Int {
+        return calendar.component(componenet, from: self)
+    }
 }

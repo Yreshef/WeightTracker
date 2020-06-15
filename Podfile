@@ -10,5 +10,7 @@ target 'WeightTracker' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'SnapKit', '~> 5.0.0'
+	pod 'Charts'
+	
 
 end

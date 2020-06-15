@@ -10,13 +10,13 @@ import UIKit
 import Foundation
 
 
-class WTButton: UIButton {
+public class WTButton: UIButton {
     
     
-    // MARK: - Properties
+    // MARK: - Components
     //=============================
 
-    private let titleFont = "Montserrat-Bold"
+    private let titleFont = "Montserrat-Medium"
     private let fontSize: CGFloat = 17.0
     private let color: UIColor = .white
     private let background: UIColor = .clear
@@ -25,7 +25,7 @@ class WTButton: UIButton {
     private let cornerRadius: CGFloat = 5.0
     
     
-    // MARK: - Initializers
+    // MARK: - Life Cycle
     //=============================
 
     init() {
@@ -33,7 +33,8 @@ class WTButton: UIButton {
         setupButton()
     }
     
-    init(font: UIFont,
+    init(font: String,
+         fontSize: CGFloat,
          titleColor: UIColor,
          backgroundColor: UIColor,
          borderColor: CGColor,
@@ -41,9 +42,12 @@ class WTButton: UIButton {
          cornerRadius: CGFloat) {
         
         super.init(frame: .zero)
-        setupButton(font: font, titleColor: titleColor,
+        setupButton(fontName: font,
+                    fontSize: fontSize,
+                    titleColor: titleColor,
                     bgColor: backgroundColor,
-                    borderColor: borderColor, borderWidth: borderWidth,
+                    borderColor: borderColor,
+                    borderWidth: borderWidth,
                     cornerRadius: cornerRadius)
     }
     
@@ -55,19 +59,22 @@ class WTButton: UIButton {
     //=============================
 
     private func setupButton(){
-        self.setupButton(font: UIFont(name: titleFont, size: fontSize),
+        self.setupButton(fontName: titleFont, fontSize: fontSize,
                          titleColor: color, bgColor: background,
                          borderColor: borderColor.cgColor, borderWidth: borderWidth, cornerRadius: cornerRadius)
     }
     
-    private func setupButton(font: UIFont?,
+    //TODO: check why font size wont change
+    
+    private func setupButton(fontName: String,
+                             fontSize: CGFloat,
                              titleColor: UIColor,
                              bgColor: UIColor,
                              borderColor: CGColor,
                              borderWidth: CGFloat,
                              cornerRadius: CGFloat) {
         
-        titleLabel?.font = font
+        titleLabel?.font = UIFont(name: fontName, size: fontSize)
         setTitleColor(titleColor, for: UIControl.State.normal)
         backgroundColor = bgColor
         layer.borderColor = borderColor

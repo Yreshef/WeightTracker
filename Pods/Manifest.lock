@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - Firebase/Core (6.26.0):
     - Firebase/CoreOnly
     - FirebaseAnalytics (= 6.6.0)
@@ -77,12 +80,14 @@ PODS:
   - SnapKit (5.0.1)
 
 DEPENDENCIES:
+  - Charts
   - Firebase/Core
   - Firebase/Database
   - SnapKit (~> 5.0.0)
 
 SPEC REPOS:
   trunk:
+    - Charts
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -101,6 +106,7 @@ SPEC REPOS:
     - SnapKit
 
 SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   Firebase: 7cf5f9c67f03cb3b606d1d6535286e1080e57eb6
   FirebaseAnalytics: 96634d356482d4f3af8fe459a0ebf19a99c71b75
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
@@ -118,6 +124,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
 
-PODFILE CHECKSUM: 0e2770694ca49a48c26bfc3633ddcbd99a7f8ad9
+PODFILE CHECKSUM: 16a09272bf612bb8355d3c48d56e0dddf5826018
 
 COCOAPODS: 1.9.1

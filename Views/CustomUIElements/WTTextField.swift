@@ -8,24 +8,23 @@
 
 import UIKit
 
-class WTTextField: UITextField {
+public class WTTextField: UITextField {
     
-    // MARK: - Properties
+    // MARK: - Components
     //=============================
-
-    let textField = UITextField()
     
-    let tfFont = ""
+    let tfFont = "Montserrat-Medium"
     let tfFontSize: CGFloat = 17.0
-    let tfTextColor: UIColor = .black
+    let tfTextColor: UIColor = .white
     let tfMinFontSize: CGFloat = 17.0
-    let tfBorderStyle: UITextField.BorderStyle = UITextField.BorderStyle.roundedRect
+    let tfBorderStyle: UITextField.BorderStyle = .none
     
-    // MARK: - Initializers
+    
+    // MARK: - Life Cycle
     //=============================
 
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: .zero)
         setupTextField()
     }
@@ -54,24 +53,48 @@ class WTTextField: UITextField {
     //=============================
 
     private func setupTextField() {
-        textField.placeholder = ""
-        textField.font = UIFont(name: tfFont, size: tfFontSize)
-        textField.textColor = tfTextColor
-        textField.minimumFontSize = 17.0
-        textField.borderStyle = tfBorderStyle
+        placeholder = ""
+        font = UIFont(name: tfFont, size: tfFontSize)
+        textColor = tfTextColor
+        minimumFontSize = 17.0
+        borderStyle = tfBorderStyle
     }
     
+    //TODO: Ask Dan about selfishness
     private func setupTextField(placeholder: String,
                                 font: String,
                                 fontSize: CGFloat,
                                 textColor: UIColor,
                                 minFontSize: CGFloat,
                                 borderStyle: UITextField.BorderStyle){
-        textField.placeholder = placeholder
-        textField.font = UIFont(name: font, size: fontSize)
-        textField.textColor = textColor
-        textField.minimumFontSize = minFontSize
-        textField.borderStyle = borderStyle
+        self.placeholder = placeholder
+        self.font = UIFont(name: font, size: fontSize)
+        self.textColor = textColor
+        self.minimumFontSize = minFontSize
+        self.borderStyle = borderStyle
     }
-    
 }
+
+extension WTTextField {
+    
+    func setAttributedText(placeholder: String) {
+        self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+    }
+}
+
+//extension UITextFieldDelegate {
+//
+//    //TODO: Fix this
+//    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        let placeholder = textField.placeholder ?? ""
+//        textField.placeholder = ""
+//    }
+//
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        let placeholder = ""
+//        if textField.placeholder == ""{
+//            textField.placeholder = placeholder
+//        }
+//    }
+//}
+
