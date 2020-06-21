@@ -12,6 +12,7 @@ import FirebaseAuth
 
 class AuthService: AuthServicable {
    
+    //TODO: Handle threading 
     var user: Person?
     typealias username = String
     

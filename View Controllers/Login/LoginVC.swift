@@ -16,22 +16,14 @@ public final class LoginVC: UIViewController {
     //=============================
     
     private let loginScreenView: LoginScreenView = LoginScreenView()
-//    private let viewModel: LoginViewModelable
     
     private let weightFacade: WeightFacadable
     private let databaseFacade: DatabaseFacadable
     private let authService: AuthServicable
-    
     private let enviroment: AppEnvironment
     
     // MARK: - Initializers
     //=============================
-    //TODO: Confrom to MVVM
-    
-//    init(viewModel: LoginViewModelable){
-//        self.viewModel = viewModel
-//        super.init(nibName: nil, bundle: nil)
-//    }
     
     init(environment: AppEnvironment) {
         
@@ -62,16 +54,20 @@ public final class LoginVC: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
 
-        //TODO: Move to ModelView 
         loginScreenView.addSignUpButtonTarget(target: self,
                                               action: #selector(userSignupButtonTapped),
                                               for: .touchUpInside)
         loginScreenView.addLoginButtonTarget(target: self,
                                              action: #selector(loginButtonTapped),
                                              for: .touchUpInside)
-        loginScreenView.addForgotPasswordButtonTarget(target: self, action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
+        loginScreenView.addForgotPasswordButtonTarget(target: self,
+                                                      action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
     }
     
+    
+    // MARK: - Disable Landsacpe
+    //=============================
+
     override public var shouldAutorotate: Bool {
         return false
     }
@@ -112,12 +108,10 @@ public final class LoginVC: UIViewController {
         let forgotPasswordVC = ForgotPasswordVC()
         forgotPasswordVC.modalPresentationStyle = .fullScreen
         self.present(forgotPasswordVC, animated: true, completion: nil)
-        
-//        viewModel.forgotPasswordTapped()
     }
     
     //TODO: consider writing a show alert service instead of an extension
-    
+    //TODO: Add animations
     
 }
 

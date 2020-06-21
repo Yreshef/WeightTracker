@@ -1,17 +1,15 @@
 {
   "images" : [
     {
-      "filename" : "iconfinder_house_384890.png",
+      "filename" : "email-filled@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "iconfinder_house_384890@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "iconfinder_house_384890@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

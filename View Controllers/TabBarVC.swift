@@ -13,8 +13,11 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     // MARK: - Properties
     //=============================
     
-    let homeImage = UIImage(named: "homeIcon")
-    
+    let homeImage = UIImage(named: "home")
+    let graphImage = UIImage(named: "graph")
+    let dailyListImage = UIImage(named: "list")
+    let settingsImage = UIImage(named: "settings")
+
     // MARK: - Initializers
     //=============================
     
@@ -41,17 +44,23 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     //=============================
 
     private func setupTabBar() {
+        
         let add = generateNC(vc: ViewController(), title: "Add")
-//        let addButton = UIButton()
         let graphVC = GraphVC()
         let homeVC = HomeVC()
         let dailyInputVC = DailyInputVC()
         let settingsVC = SettingsVC()
         let homeNavController = UINavigationController(rootViewController: homeVC)
+        
         homeNavController.title = "Home"
         graphVC.title = "Graph"
         dailyInputVC.title = "Daily Input"
         settingsVC.title = "Settings"
+        homeNavController.tabBarItem.image = homeImage
+        graphVC.tabBarItem.image = graphImage
+        dailyInputVC.tabBarItem.image = dailyListImage
+        settingsVC.tabBarItem.image = settingsImage
+        
         viewControllers = [homeNavController, graphVC, add, dailyInputVC, settingsVC]
     }
     

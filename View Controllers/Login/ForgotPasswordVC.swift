@@ -43,6 +43,9 @@ class ForgotPasswordVC: UIViewController {
         
     }
     
+    // MARK: - Disable Landscape
+    //=============================
+
     override public var shouldAutorotate: Bool {
         return false
     }

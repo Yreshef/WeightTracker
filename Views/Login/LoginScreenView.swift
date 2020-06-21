@@ -14,8 +14,12 @@ public final class LoginScreenView: UIView {
     // MARK: - Components
     //=============================
     
-    private let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
+    private let bgColor: UIColor = UIColor(named: "yaleBlue") ?? .black
+    
     private let continueImage: UIImage? = UIImage(named: "ContinueButton")
+    private let emailImage: UIImage? = UIImage(named: "whiteEmail")
+    private let passwordImage: UIImage? = UIImage(named: "whiteLock")
+
 
     // MARK: - Life Cycle
     //=============================
@@ -173,6 +177,14 @@ public final class LoginScreenView: UIView {
         
         emailTextField.textField.setAttributedText(placeholder: "Email")
         passwordTextField.textField.setAttributedText(placeholder: "Password")
+        
+        emailTextField.textField.leftView = UIImageView(image: emailImage)
+        emailTextField.textField.leftViewMode = UITextField.ViewMode.always
+        
+
+        passwordTextField.textField.leftView = UIImageView(image: passwordImage)
+        passwordTextField.textField.leftViewMode = UITextField.ViewMode.always
+
         
         signInLabel.text = "Sign In"
         signInLabel.textColor = .white

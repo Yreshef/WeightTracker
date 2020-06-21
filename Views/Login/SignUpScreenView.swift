@@ -15,6 +15,8 @@ public final class SignUpScreenView: UIView {
     
     private let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
     private let continueImage: UIImage? = UIImage(named: "ContinueButton")
+    private let userImage: UIImage? = UIImage(named: "user")
+
     
     
     // MARK: - Life Cycle

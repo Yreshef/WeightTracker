@@ -58,6 +58,7 @@ public class WTTextField: UITextField {
         textColor = tfTextColor
         minimumFontSize = 17.0
         borderStyle = tfBorderStyle
+        
     }
     
     //TODO: Ask Dan about selfishness

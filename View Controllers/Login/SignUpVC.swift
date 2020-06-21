@@ -19,9 +19,6 @@ public class SignUpVC: UIViewController {
     private let authService: AuthServicable
     private let environment: AppEnvironment
     
-    
-//    private let signUpModel = SignUpModel()
-    
     // MARK: - Initializers
     //=============================
     
@@ -55,6 +52,9 @@ public class SignUpVC: UIViewController {
         super.viewDidAppear(animated)
     }
     
+    // MARK: - Disable Landscape
+    //=============================
+
     override public var shouldAutorotate: Bool {
         return false
     }
@@ -62,6 +62,7 @@ public class SignUpVC: UIViewController {
     override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
         return .portrait
     }
+    
     // MARK: - Methods
     //=============================
     
@@ -101,11 +102,8 @@ public class SignUpVC: UIViewController {
         //TODO: How to go back to previous VC without calling the enviornemnt VC
         
     }
-    
 
-    
-    
-    
+    //TODO: Add animations
 }
 
 
