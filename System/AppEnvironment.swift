@@ -13,14 +13,17 @@ class AppEnvironment {
     let databaseFacade: DatabaseFacadable
     let weightFacade: WeightFacadable
     let coreDataLogic: CoreDataLogic
+    let authService: AuthServicable
     
     init(databaseFacade: DatabaseFacadable,
          weightFacade: WeightFacadable,
-         coreDataLogic: CoreDataLogic) {
+         coreDataLogic: CoreDataLogic,
+         authService: AuthServicable) {
         
         self.databaseFacade = databaseFacade
         self.weightFacade = weightFacade
         self.coreDataLogic = coreDataLogic
+        self.authService = authService
     }
     
 }
@@ -31,6 +34,6 @@ extension AppEnvironment {
         let stack = CoreDataStack(modelName: "WeightTracker")
         return AppEnvironment(databaseFacade: DatabaseFacade(coreDataLogic: stack),
                               weightFacade: WeightFacade(),
-                              coreDataLogic: stack)
+                              coreDataLogic: stack, authService: AuthService())
     }
 }

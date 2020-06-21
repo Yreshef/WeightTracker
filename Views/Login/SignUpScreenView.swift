@@ -30,7 +30,6 @@ public final class SignUpScreenView: UIView {
         setConstraints()
         setUIElements()
         setKeyboardType()
-
         
     }
     
@@ -43,24 +42,30 @@ public final class SignUpScreenView: UIView {
     //=============================
     
     private let title = WTTitle()
-    private let nameTextField = WTUnderlineTextField()
-    private let emailTextField = WTUnderlineTextField()
-    private let passwordTextField = WTUnderlineTextField()
+    public let emailTextField = WTUnderlineTextField()
+    public let usernameTextField = WTUnderlineTextField()
+    public let passwordTextField = WTUnderlineTextField()
     private let signUpLabel = UILabel()
+    
+    
     private let signUpButton: UIButton = {
         let button = UIButton()
+        
         button.widthAnchor.constraint(equalToConstant: 90).isActive = true
         
         return button
     }()
+    
     private let backButton: UIButton = {
+        
         let button = UIButton()
+        
         button.setTitle("Back", for: .normal)
         button.underlineText()
         button.titleLabel?.textColor = .white
+        
         return button
     }()
-    
     
     private lazy var titleStackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.title])
@@ -74,8 +79,8 @@ public final class SignUpScreenView: UIView {
     }()
     
     private lazy var textFieldStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.nameTextField,
-                                                       self.emailTextField,
+        let stackview = UIStackView(arrangedSubviews: [self.emailTextField,
+                                                       self.usernameTextField,
                                                        self.passwordTextField])
         
         stackview.axis = .vertical
@@ -84,7 +89,7 @@ public final class SignUpScreenView: UIView {
         stackview.spacing = 30
         
         return stackview
-        }()
+    }()
     
     private lazy var signUpStackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.signUpLabel,
@@ -106,7 +111,7 @@ public final class SignUpScreenView: UIView {
         stackview.distribution = .fillProportionally
         
         return stackview
-        }()
+    }()
     
     
     // MARK: - Methods
@@ -136,16 +141,16 @@ public final class SignUpScreenView: UIView {
     }
     
     private func setKeyboardType() {
-        nameTextField.textField.keyboardType = .alphabet
         emailTextField.textField.keyboardType = .emailAddress
+        usernameTextField.textField.keyboardType = .alphabet
         passwordTextField.textField.keyboardType = .numbersAndPunctuation
         
         // Mask password text
         passwordTextField.textField.isSecureTextEntry = true
     }
     
+    
     private func setUIElements() {
-        
         
         title.text = "Create\nAccount"
         title.numberOfLines = 2
@@ -153,21 +158,32 @@ public final class SignUpScreenView: UIView {
         title.textColor = .white
         title.font = UIFont(name: "Roboto-Bold", size: 45)
         
-        nameTextField.textField.setAttributedText(placeholder: "Name")
         emailTextField.textField.setAttributedText(placeholder: "Email")
+        usernameTextField.textField.setAttributedText(placeholder: "Username")
         passwordTextField.textField.setAttributedText(placeholder: "Password")
         
         signUpLabel.text = "Sign up"
         signUpLabel.textColor = .white
         signUpLabel.font = UIFont(name: "Roboto-Bold", size: 30)
-
+        
         signUpButton.setImage(continueImage, for: .normal)
+    }
+    
+    func addSignUpButtonTarget(target: Any,
+                               action: Selector,
+                               for event: UIControl.Event){
+        signUpButton.addTarget(target, action: action, for: event)
         
-//        signInButton.titleLabel?.textColor = .white
+    }
+}
+
+
+extension SignUpScreenView: UITextFieldDelegate {
+    
+    //TODO: Implement this
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
         
-        
-        
-        
-        
+        return true
     }
 }

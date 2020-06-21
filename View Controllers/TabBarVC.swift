@@ -8,23 +8,31 @@
 
 import UIKit
 
-class TabBarVC: UITabBarController {
+class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     
     // MARK: - Properties
     //=============================
     
     let homeImage = UIImage(named: "homeIcon")
     
-    
-    
     // MARK: - Initializers
     //=============================
     
+    
+    //Disable landscape
+    override public var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
+    }
     // MARK: - View Life Cycle
     //=============================
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.delegate = self
         UINavigationBar.appearance().prefersLargeTitles = true
         setupTabBar()
     }
@@ -33,14 +41,18 @@ class TabBarVC: UITabBarController {
     //=============================
 
     private func setupTabBar() {
-        let settings = generateNC(vc: ViewController(), title: "settings")
-        let details = generateNC(vc: ViewController(), title: "details")
-        let add = generateNC(vc: ViewController(), title: "add")
-        let daily = generateNC(vc: ViewController(), title: "daily")
+        let add = generateNC(vc: ViewController(), title: "Add")
+//        let addButton = UIButton()
+        let graphVC = GraphVC()
         let homeVC = HomeVC()
+        let dailyInputVC = DailyInputVC()
+        let settingsVC = SettingsVC()
         let homeNavController = UINavigationController(rootViewController: homeVC)
         homeNavController.title = "Home"
-        viewControllers = [homeNavController, details, add, daily, settings]
+        graphVC.title = "Graph"
+        dailyInputVC.title = "Daily Input"
+        settingsVC.title = "Settings"
+        viewControllers = [homeNavController, graphVC, add, dailyInputVC, settingsVC]
     }
     
     private func setTabBarItems() {

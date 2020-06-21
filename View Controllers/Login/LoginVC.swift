@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 
 public final class LoginVC: UIViewController {
@@ -19,6 +20,9 @@ public final class LoginVC: UIViewController {
     
     private let weightFacade: WeightFacadable
     private let databaseFacade: DatabaseFacadable
+    private let authService: AuthServicable
+    
+    private let enviroment: AppEnvironment
     
     // MARK: - Initializers
     //=============================
@@ -33,6 +37,9 @@ public final class LoginVC: UIViewController {
         
         self.weightFacade = environment.weightFacade
         self.databaseFacade = environment.databaseFacade
+        self.enviroment = environment
+        
+        self.authService = environment.authService
         
         super.init(nibName: nil, bundle: nil)
         
@@ -41,6 +48,7 @@ public final class LoginVC: UIViewController {
                                leading: view.leadingAnchor,
                                bottom: view.bottomAnchor,
                                trailing: view.trailingAnchor)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -77,16 +85,24 @@ public final class LoginVC: UIViewController {
     //=============================
     
     @objc private func loginButtonTapped() {
-        //TODO: implement
-//        viewModel.loginButtonTapped()
-        let tabBarVC = TabBarVC()
-        tabBarVC.modalPresentationStyle = .fullScreen
-        self.present(tabBarVC, animated: true, completion: nil)
+        guard let email = loginScreenView.emailTextField.textField.text, let password = loginScreenView.passwordTextField.textField.text else {
+            showAlert(title: "Oops", message: "Please fill in all fields")
+            return
+        }
+        authService.signIn(email: email, password: password, completion: { [unowned self] user in
+            guard let user = user else {
+                self.showAlert(title: "Login failed for use", message: "Check if all the fields are correct")
+                return
+            }
+            let tabBarVC = TabBarVC()
+            tabBarVC.modalPresentationStyle = .fullScreen
+            self.present(tabBarVC, animated: true, completion: nil)
+        })
     }
     
     @objc private func userSignupButtonTapped() {
         // Transition to SignUpVC
-        let signUpVC = SignUpVC()
+        let signUpVC = SignUpVC(environment: enviroment)
         signUpVC.modalPresentationStyle = .fullScreen
         self.present(signUpVC, animated: true, completion: nil)
     }
@@ -100,10 +116,18 @@ public final class LoginVC: UIViewController {
 //        viewModel.forgotPasswordTapped()
     }
     
+    //TODO: consider writing a show alert service instead of an extension
+    
+    
+}
 
+extension UIViewController {
     
-                
-    //TODO: See if some of the features exist in Firebase already
-    
-    
+    func showAlert(title: String, message: String) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        alertController.addAction(UIAlertAction(title: "OK",
+                                                style: .default,
+                                                handler: { action in }))
+        self.present(alertController, animated: true, completion: nil)
+    }
 }

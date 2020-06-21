@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Firebase
+
 
 public class SignUpVC: UIViewController {
     
@@ -14,22 +16,27 @@ public class SignUpVC: UIViewController {
     //=============================
     
     private let signUpScreenView = SignUpScreenView()
+    private let authService: AuthServicable
+    private let environment: AppEnvironment
+    
+    
 //    private let signUpModel = SignUpModel()
-    
-    
-    
     
     // MARK: - Initializers
     //=============================
     
     
-    init() {
+    init(environment: AppEnvironment) {
+        self.authService = environment.authService
+        self.environment = environment
+
         super.init(nibName: nil, bundle: nil)
         view.addSubview(signUpScreenView)
         signUpScreenView.anchor(top: view.topAnchor,
                                 leading: view.leadingAnchor,
                                 bottom: view.bottomAnchor,
                                 trailing: view.trailingAnchor)
+        addButtonTargets()
     }
     
     required init?(coder: NSCoder) {
@@ -41,6 +48,7 @@ public class SignUpVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+
     }
     
     public override func viewDidAppear(_ animated: Bool) {
@@ -65,6 +73,37 @@ public class SignUpVC: UIViewController {
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
     }
+    
+    private func addButtonTargets() {
+        signUpScreenView.addSignUpButtonTarget(target: self, action: #selector(userSignupButtonTapped), for: .touchUpInside)
+    }
+    
+    @objc private func userSignupButtonTapped() {
+        guard let email = signUpScreenView.emailTextField.textField.text,
+            let password = signUpScreenView.passwordTextField.textField.text,
+            let username = signUpScreenView.usernameTextField.textField.text else {
+            print("Hello")
+            return
+        }
+        //TODO: Fix this! v
+        authService.signUp(email: email, password: password) { (user) in
+            if user != nil {
+                let tabBarVC = TabBarVC()
+                tabBarVC.modalPresentationStyle = .fullScreen
+                self.present(tabBarVC, animated: true, completion: nil)
+            } else {
+                self.showAlert(title: "Oops!", message: "Please fill in all fields")
+            }
+        }
+    }
+    
+    @objc private func backButtonTapped() {
+        //TODO: How to go back to previous VC without calling the enviornemnt VC
+        
+    }
+    
+
+    
     
     
 }

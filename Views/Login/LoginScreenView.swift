@@ -32,7 +32,7 @@ public final class LoginScreenView: UIView {
         setConstraints()
         setUIElements()
         setKeyboardType()
-
+        
     }
     
     required init?(coder: NSCoder) {
@@ -44,22 +44,28 @@ public final class LoginScreenView: UIView {
     //=============================
     
     private let title = WTTitle()
-    private let emailTextField = WTUnderlineTextField()
-    private let passwordTextField = WTUnderlineTextField()
+    public let emailTextField = WTUnderlineTextField()
+    public let passwordTextField = WTUnderlineTextField()
     private let signInLabel = UILabel()
+    
     private let signInButton: UIButton = {
         let button = UIButton()
+        
         button.widthAnchor.constraint(equalToConstant: 90).isActive = true
         
         return button
     }()
+    
     private let signUpButton: UIButton = {
         let button = UIButton()
+        
         button.setTitle("Sign up", for: .normal)
         button.underlineText()
         button.titleLabel?.textColor = .white
+        
         return button
     }()
+    
     private let forgotPasswordButton = UIButton()
     
     
@@ -74,7 +80,7 @@ public final class LoginScreenView: UIView {
         return stackview
     }()
     
-  private lazy var textFieldStackView: UIStackView = { [unowned self] in
+  private lazy var textFieldStackView: UIStackView = { 
     let stackview = UIStackView(arrangedSubviews: [self.emailTextField,
                                                    self.passwordTextField])
         
@@ -86,7 +92,7 @@ public final class LoginScreenView: UIView {
         return stackview
     }()
     
-    private lazy var signInStackView: UIStackView = { [unowned self] in
+    private lazy var signInStackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.signInLabel,
                                                        self.signInButton])
         
@@ -98,7 +104,7 @@ public final class LoginScreenView: UIView {
         return stackview
         }()
     
-    private lazy var bottomButtonsStackView: UIStackView = { [unowned self] in
+    private lazy var bottomButtonsStackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.signUpButton,
                                                        self.forgotPasswordButton])
         

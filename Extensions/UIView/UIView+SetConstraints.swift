@@ -28,4 +28,8 @@ extension UIView {
                                   constant: -padding.right).isActive = true
     }
     
+    func anchor(to: UIView, padding: UIEdgeInsets = .zero) {
+        self.anchor(top: to.topAnchor, leading: to.leadingAnchor, bottom: to.bottomAnchor, trailing: to.trailingAnchor, padding: padding)
+    }
+    
 }
