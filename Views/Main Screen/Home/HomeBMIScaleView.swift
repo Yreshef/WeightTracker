@@ -10,7 +10,7 @@ import UIKit
 import TGPControls
 
 
-public final class HomeBMIScaleView: UIView {
+public class HomeBMIScaleView: UIView {
     
     // MARK: - Components
     //=============================
@@ -31,6 +31,7 @@ public final class HomeBMIScaleView: UIView {
         setUIElements()
         addTicksToSlider()
         //TODO: Disable user interaction
+        
     }
     
     required init?(coder: NSCoder) {
@@ -89,11 +90,11 @@ public final class HomeBMIScaleView: UIView {
         bmiSlider.minimumTickTintColor = UIColor.green
         
         if bmiSlider.value > 0 && bmiSlider.value <= 15 {
-            
+    
         }
-
     }
     
-
-    
+    public func populateUI(bmi: Float) {
+        //TODO: Implement
+    }
 }

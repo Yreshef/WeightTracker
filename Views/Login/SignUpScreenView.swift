@@ -13,22 +13,22 @@ public final class SignUpScreenView: UIView {
     // MARK: - Components
     //=============================
     
-    private let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
-    private let continueImage: UIImage? = UIImage(named: "ContinueButton")
-    private let userImage: UIImage? = UIImage(named: "user")
-
+    private let bgColor: UIColor = UIColor(named: "yaleBlue") ?? .black
     
+    private let emailImage: UIImage? = UIImage(named: "emailWhite")
+    private let passwordImage: UIImage? = UIImage(named: "lockWhite")
+    private let userImage: UIImage? = UIImage(named: "userWhite")
     
     // MARK: - Life Cycle
     //=============================
     
     public init() {
         super.init(frame: .zero)
-        addSubview(titleStackView)
         backgroundColor = bgColor
-        addSubview(textFieldStackView)
-        addSubview(signUpStackView)
-        addSubview(backButton)
+        
+        addSubview(middleStackView)
+        addSubview(bottomStackView)
+        
         setConstraints()
         setUIElements()
         setKeyboardType()
@@ -43,78 +43,49 @@ public final class SignUpScreenView: UIView {
     // MARK: - Subviews
     //=============================
     
-    private let title = WTTitle()
     public let emailTextField = WTUnderlineTextField()
     public let usernameTextField = WTUnderlineTextField()
     public let passwordTextField = WTUnderlineTextField()
-    private let signUpLabel = UILabel()
     
+    private let signUpButton = WTButton()
     
-    private let signUpButton: UIButton = {
+    private let signInButton: UIButton = {
         let button = UIButton()
         
-        button.widthAnchor.constraint(equalToConstant: 90).isActive = true
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
         
         return button
     }()
     
-    private let backButton: UIButton = {
-        
-        let button = UIButton()
-        
-        button.setTitle("Back", for: .normal)
-        button.underlineText()
-        button.titleLabel?.textColor = .white
-        
-        return button
-    }()
-    
-    private lazy var titleStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.title])
-        
-        stackview.axis = .vertical
-        stackview.alignment = .leading
-        stackview.distribution = .fillEqually
-        stackview.spacing = 0
-        
-        return stackview
-    }()
-    
-    private lazy var textFieldStackView: UIStackView = {
+    private lazy var middleStackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.emailTextField,
                                                        self.usernameTextField,
-                                                       self.passwordTextField])
+                                                       self.passwordTextField,
+                                                       self.signUpButton])
         
         stackview.axis = .vertical
         stackview.alignment = .fill
-        stackview.distribution = .equalSpacing
+        stackview.distribution = .fillEqually
         stackview.spacing = 30
         
-        return stackview
-    }()
-    
-    private lazy var signUpStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.signUpLabel,
-                                                       self.signUpButton])
+        self.emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        stackview.axis = .horizontal
-        stackview.alignment = .fill
-        stackview.distribution = .fillProportionally
-        stackview.heightAnchor.constraint(equalToConstant: 90).isActive = true
         
         return stackview
     }()
     
-    private lazy var bottomButtonsStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.backButton])
+    private lazy var bottomStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [self.signInButton])
         
         stackview.axis = .horizontal
-        stackview.alignment = .leading
+        stackview.alignment = .center
         stackview.distribution = .fillProportionally
         
         return stackview
     }()
-    
     
     // MARK: - Methods
     //=============================
@@ -122,24 +93,18 @@ public final class SignUpScreenView: UIView {
     
     private func setConstraints() {
         
-        titleStackView.translatesAutoresizingMaskIntoConstraints = false
-        titleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-        titleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        
-        textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        textFieldStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        textFieldStackView.bottomAnchor.constraint(equalTo: signUpStackView.topAnchor, constant: -36).isActive = true
+        middleStackView.translatesAutoresizingMaskIntoConstraints = false
+        middleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 250).isActive = true
+        middleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        middleStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+
         
         
-        signUpStackView.translatesAutoresizingMaskIntoConstraints = false
-        signUpStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        signUpStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        signUpStackView.bottomAnchor.constraint(equalTo: backButton.topAnchor, constant: -150).isActive = true
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        bottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+        bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        backButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -36).isActive = true
     }
     
     private func setKeyboardType() {
@@ -154,29 +119,31 @@ public final class SignUpScreenView: UIView {
     
     private func setUIElements() {
         
-        title.text = "Create\nAccount"
-        title.numberOfLines = 2
-        title.lineBreakMode = .byWordWrapping
-        title.textColor = .white
-        title.font = UIFont(name: "Roboto-Bold", size: 45)
-        
         emailTextField.textField.setAttributedText(placeholder: "Email")
+        emailTextField.textField.leftView = UIImageView(image: emailImage)
+        emailTextField.textField.leftViewMode = UITextField.ViewMode.always
+        
         usernameTextField.textField.setAttributedText(placeholder: "Username")
+        usernameTextField.textField.leftView = UIImageView(image: userImage)
+        usernameTextField.textField.leftViewMode = UITextField.ViewMode.always
+        
+        
         passwordTextField.textField.setAttributedText(placeholder: "Password")
+        passwordTextField.textField.leftView = UIImageView(image: passwordImage)
+        passwordTextField.textField.leftViewMode = UITextField.ViewMode.always
         
-        signUpLabel.text = "Sign up"
-        signUpLabel.textColor = .white
-        signUpLabel.font = UIFont(name: "Roboto-Bold", size: 30)
+        signUpButton.setTitle("Sign Up", for: .normal)
+        signUpButton.setTitleColor(UIColor(named: "yaleBlue"), for: .normal)
+        signUpButton.backgroundColor = .white
         
-        signUpButton.setImage(continueImage, for: .normal)
     }
     
-    func addSignUpButtonTarget(target: Any,
-                               action: Selector,
-                               for event: UIControl.Event){
-        signUpButton.addTarget(target, action: action, for: event)
-        
-    }
+    //    func addSignUpButtonTarget(target: Any,
+    //                               action: Selector,
+    //                               for event: UIControl.Event){
+    //        signUpButton.addTarget(target, action: action, for: event)
+    //
+    //    }
 }
 
 

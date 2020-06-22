@@ -9,7 +9,8 @@
 import UIKit
 import Firebase
 
-
+//TODO: (?)Wrap in nav controller and hide bar so you could pop the signup view controller
+//      when you wanna back up to login VC(?)
 public final class LoginVC: UIViewController {
     
     // MARK: - Properties
@@ -43,6 +44,7 @@ public final class LoginVC: UIViewController {
         
     }
     
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -60,8 +62,8 @@ public final class LoginVC: UIViewController {
         loginScreenView.addLoginButtonTarget(target: self,
                                              action: #selector(loginButtonTapped),
                                              for: .touchUpInside)
-        loginScreenView.addForgotPasswordButtonTarget(target: self,
-                                                      action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
+//        loginScreenView.addForgotPasswordButtonTarget(target: self,
+//                                                      action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
     }
     
     

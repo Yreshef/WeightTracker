@@ -60,12 +60,6 @@ public final class HomeDataView: UIView {
         return label
     }()
     
-    //TODO: Decide if i want to use this or the label
-    let weightTextField: WTTextField = {
-        let textfield = WTTextField()
-        return textfield
-    }()
-    
     private lazy var stackView: UIStackView = {
         let stackview = UIStackView(arrangedSubviews: [self.titleLabel,
                                                        self.weightLabel])
@@ -90,7 +84,10 @@ public final class HomeDataView: UIView {
         stackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 12).isActive = true
         stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -12).isActive = true
-        
+    }
+    
+    public func populateUI(weight: Float) {
+        //TODO: Implement
     }
 }
 

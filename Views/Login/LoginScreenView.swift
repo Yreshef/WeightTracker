@@ -16,11 +16,10 @@ public final class LoginScreenView: UIView {
     
     private let bgColor: UIColor = UIColor(named: "yaleBlue") ?? .black
     
-    private let continueImage: UIImage? = UIImage(named: "ContinueButton")
-    private let emailImage: UIImage? = UIImage(named: "whiteEmail")
-    private let passwordImage: UIImage? = UIImage(named: "whiteLock")
-
-
+    private let emailImage: UIImage? = UIImage(named: "emailWhite")
+    private let passwordImage: UIImage? = UIImage(named: "lockWhite")
+    
+    
     // MARK: - Life Cycle
     //=============================
     
@@ -28,11 +27,10 @@ public final class LoginScreenView: UIView {
         super.init(frame: .zero)
         
         backgroundColor = bgColor
-
-        addSubview(titleStackView)
-        addSubview(textFieldStackView)
-        addSubview(signInStackView)
-        addSubview(bottomButtonsStackView)
+        
+        addSubview(middleStackView)
+        addSubview(forgotPasswordButton)
+        addSubview(bottomStackView)
         setConstraints()
         setUIElements()
         setKeyboardType()
@@ -47,108 +45,85 @@ public final class LoginScreenView: UIView {
     // MARK: - Subviews
     //=============================
     
-    private let title = WTTitle()
     public let emailTextField = WTUnderlineTextField()
     public let passwordTextField = WTUnderlineTextField()
-    private let signInLabel = UILabel()
+    public let signInButton = WTButton()
     
-    private let signInButton: UIButton = {
+    
+    public lazy var signUpButton: UIButton = {
         let button = UIButton()
         
-        button.widthAnchor.constraint(equalToConstant: 90).isActive = true
-        
+        let attributedTitle = NSMutableAttributedString(string: "Don't have an acccount yet? ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
+        attributedTitle.append(NSAttributedString(string: "Sign Up", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+                
         return button
     }()
     
-    private let signUpButton: UIButton = {
+    //TODO: Remove the green color, testing purposes
+    private let forgotPasswordButton: UIButton = {
         let button = UIButton()
-        
-        button.setTitle("Sign up", for: .normal)
-        button.underlineText()
-        button.titleLabel?.textColor = .white
-        
+        button.setTitle("Forgot password?", for: .normal)
+        button.setTitleColor(UIColor(named: "platinum") ?? UIColor.green, for: .normal)
+        button.titleLabel?.font = .systemFont(ofSize: 14)
+        button.showsTouchWhenHighlighted = true
         return button
     }()
     
-    private let forgotPasswordButton = UIButton()
-    
-    
-    private lazy var titleStackView: UIStackView = { [unowned self] in
-        let stackview = UIStackView(arrangedSubviews: [self.title])
-        
-        stackview.axis = .vertical
-        stackview.alignment = .leading
-        stackview.distribution = .fillEqually
-        stackview.spacing = 0
-        
-        return stackview
-    }()
-    
-  private lazy var textFieldStackView: UIStackView = { 
-    let stackview = UIStackView(arrangedSubviews: [self.emailTextField,
-                                                   self.passwordTextField])
-        
-        stackview.axis = .vertical
-        stackview.alignment = .fill
-        stackview.distribution = .equalSpacing
-        stackview.spacing = 30
-        
-        return stackview
-    }()
-    
-    private lazy var signInStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.signInLabel,
+    //TODO: Ask dan to remind me whats the name of this property
+    private lazy var middleStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [self.emailTextField,
+                                                       self.passwordTextField,
                                                        self.signInButton])
         
-        stackview.axis = .horizontal
+        stackview.axis = .vertical
         stackview.alignment = .fill
-        stackview.distribution = .fillProportionally
-        stackview.heightAnchor.constraint(equalToConstant: 90).isActive = true
+        stackview.distribution = .fillEqually
+        stackview.spacing = 30
+        
+        self.emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         return stackview
-        }()
+    }()
     
-    private lazy var bottomButtonsStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.signUpButton,
-                                                       self.forgotPasswordButton])
+    private lazy var bottomStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [self.signUpButton])
         
         stackview.axis = .horizontal
-        stackview.alignment = .fill
-        stackview.distribution = .equalSpacing
-          
-          return stackview
-      }()
-    
-    
+        stackview.alignment = .center
+        stackview.distribution = .fillProportionally
+        
+        return stackview
+    }()
+
     // MARK: - Methods
     //=============================
     
     private func setConstraints() {
+        
+        middleStackView.translatesAutoresizingMaskIntoConstraints = false
+        middleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 250).isActive = true
+        middleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        middleStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+        
+        forgotPasswordButton.translatesAutoresizingMaskIntoConstraints = false
+        forgotPasswordButton.topAnchor.constraint(equalTo: middleStackView.bottomAnchor, constant: 10).isActive = true
+        forgotPasswordButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        forgotPasswordButton.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+        forgotPasswordButton.heightAnchor.constraint(equalToConstant: 30).isActive = true
 
-        titleStackView.translatesAutoresizingMaskIntoConstraints = false
-        titleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-        titleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         
-        textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        textFieldStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        textFieldStackView.bottomAnchor.constraint(equalTo: signInStackView.topAnchor, constant: -36).isActive = true
-        
-        signInStackView.translatesAutoresizingMaskIntoConstraints = false
-        signInStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        signInStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        signInStackView.bottomAnchor.constraint(equalTo: bottomButtonsStackView.topAnchor, constant: -150).isActive = true
-        
-        bottomButtonsStackView.translatesAutoresizingMaskIntoConstraints = false
-        bottomButtonsStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        bottomButtonsStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        bottomButtonsStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -36).isActive = true
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        bottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+        bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
         
     }
     
     func addSignUpButtonTarget(target: Any,
-                                  action: Selector,
-                                  for event: UIControl.Event) {
+                               action: Selector,
+                               for event: UIControl.Event) {
         signUpButton.addTarget(target, action: action, for: event)
     }
     
@@ -157,10 +132,10 @@ public final class LoginScreenView: UIView {
         signInButton.addTarget(target, action: action, for: event)
     }
     
-    func addForgotPasswordButtonTarget(target: Any, action: Selector,
-                                       for event: UIControl.Event) {
-        forgotPasswordButton.addTarget(target, action: action, for: event)
-    }
+//    func addForgotPasswordButtonTarget(target: Any, action: Selector,
+//                                       for event: UIControl.Event) {
+//        forgotPasswordButton.addTarget(target, action: action, for: event)
+//    }
     
     private func setKeyboardType() {
         emailTextField.textField.keyboardType = .emailAddress
@@ -171,32 +146,18 @@ public final class LoginScreenView: UIView {
     }
     
     private func setUIElements() {
-        title.text = "Welcome"
-        title.textColor = .white
-        title.font = UIFont(name: "Roboto-Bold", size: 40)
         
         emailTextField.textField.setAttributedText(placeholder: "Email")
-        passwordTextField.textField.setAttributedText(placeholder: "Password")
-        
         emailTextField.textField.leftView = UIImageView(image: emailImage)
         emailTextField.textField.leftViewMode = UITextField.ViewMode.always
         
-
+        passwordTextField.textField.setAttributedText(placeholder: "Password")
         passwordTextField.textField.leftView = UIImageView(image: passwordImage)
         passwordTextField.textField.leftViewMode = UITextField.ViewMode.always
-
         
-        signInLabel.text = "Sign In"
-        signInLabel.textColor = .white
-        signInLabel.font = UIFont(name: "Roboto-Bold", size: 30)
+        signInButton.backgroundColor = .white
+        signInButton.setTitle("Log In", for: .normal)
+        signInButton.setTitleColor(UIColor(named: "yaleBlue"), for: .normal)
         
-        signInButton.setImage(continueImage, for: .normal)
-
-        signUpButton.setTitle("Sign up", for: .normal)
-        signUpButton.titleLabel?.textColor = .white
-        
-        forgotPasswordButton.setTitle("Forgot password?", for: .normal)
-        forgotPasswordButton.underlineText()
-        forgotPasswordButton.titleLabel?.textColor = .white
     }
 }

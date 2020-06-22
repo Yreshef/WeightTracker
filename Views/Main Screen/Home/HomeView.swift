@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import SnapKit
 
 public class HomeView: UIView {
     
@@ -123,7 +122,6 @@ public class HomeView: UIView {
          mainStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
          mainStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         mainStackView.heightAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.6).isActive = true
- 
         
         circleDataView.clipsToBounds = true
         circleDataView.layer.cornerRadius = 10
@@ -134,14 +132,14 @@ public class HomeView: UIView {
         goalDataView.clipsToBounds = true
         goalDataView.layer.cornerRadius = 10
         
-        
         bmiStackView.translatesAutoresizingMaskIntoConstraints = false
         bmiStackView.topAnchor.constraint(equalTo: mainStackView.bottomAnchor, constant: 145).isActive = true
         bmiStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         bmiStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         bmiStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
-
-
-        
+    }
+    
+    //TODO: Ask dan why can't i call functions from the other views
+    private func populateUI(bmi: Float) {
     }
 }

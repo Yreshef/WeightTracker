@@ -17,6 +17,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     let graphImage = UIImage(named: "graph")
     let dailyListImage = UIImage(named: "list")
     let settingsImage = UIImage(named: "settings")
+    
 
     // MARK: - Initializers
     //=============================

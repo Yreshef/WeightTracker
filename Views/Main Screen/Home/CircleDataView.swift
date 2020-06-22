@@ -8,7 +8,7 @@
 
 import UIKit
 
-
+//TODO: Add the layer underneath the blue circle line
 public class CircleDataView: UIView {
     
     // MARK: - Components
@@ -53,7 +53,7 @@ public class CircleDataView: UIView {
         return view
     }()
     
-    private let precentLabel: UILabel = {
+    public let precentLabel: UILabel = {
         let label = UILabel()
         
         label.text = "69%"
@@ -71,7 +71,7 @@ public class CircleDataView: UIView {
         return label
     }()
     
-    private let currentWeightLabel: UILabel = {
+    public let currentWeightLabel: UILabel = {
         let label = UILabel()
         
         label.text = "68.5"
@@ -83,8 +83,6 @@ public class CircleDataView: UIView {
     
     private let innerView: UIView = {
         let view = UIView()
-        
-        
         return view
     }()
     
@@ -121,8 +119,6 @@ public class CircleDataView: UIView {
         
     }
     
-    
-    //
     private func getClearViewMultiplier() -> CGFloat {
         let multiplier: CGFloat = 1 - 0.3218
         let padding: CGFloat = 0.1
@@ -130,7 +126,6 @@ public class CircleDataView: UIView {
     }
     
     private func setConstraints() {
-        
         
         circleView.anchor(top: self.topAnchor,
                           leading: self.leadingAnchor,
@@ -155,6 +150,9 @@ public class CircleDataView: UIView {
         innerStackView.translatesAutoresizingMaskIntoConstraints = false
         innerStackView.centerXAnchor.constraint(equalTo: innerView.centerXAnchor).isActive = true
         innerStackView.centerYAnchor.constraint(equalTo: innerView.centerYAnchor).isActive = true
-        
+    }
+    
+    public func populateUI(currentWeight: Float, progressInPrecentage: Int) {
+        //TODO: Implement
     }
 }

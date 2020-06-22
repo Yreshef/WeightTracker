@@ -33,7 +33,7 @@ public class SignUpVC: UIViewController {
                                 leading: view.leadingAnchor,
                                 bottom: view.bottomAnchor,
                                 trailing: view.trailingAnchor)
-        addButtonTargets()
+//        addButtonTargets()
     }
     
     required init?(coder: NSCoder) {
@@ -75,9 +75,9 @@ public class SignUpVC: UIViewController {
         self.present(alertController, animated: true)
     }
     
-    private func addButtonTargets() {
-        signUpScreenView.addSignUpButtonTarget(target: self, action: #selector(userSignupButtonTapped), for: .touchUpInside)
-    }
+//    private func addButtonTargets() {
+//        signUpScreenView.addSignUpButtonTarget(target: self, action: #selector(userSignupButtonTapped), for: .touchUpInside)
+//    }
     
     @objc private func userSignupButtonTapped() {
         guard let email = signUpScreenView.emailTextField.textField.text,
