@@ -41,7 +41,7 @@ public final class LoginVC: UIViewController {
                                leading: view.leadingAnchor,
                                bottom: view.bottomAnchor,
                                trailing: view.trailingAnchor)
-        
+        addButtonTarget()
     }
     
     
@@ -55,21 +55,17 @@ public final class LoginVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-
-        loginScreenView.addSignUpButtonTarget(target: self,
-                                              action: #selector(userSignupButtonTapped),
-                                              for: .touchUpInside)
-        loginScreenView.addLoginButtonTarget(target: self,
-                                             action: #selector(loginButtonTapped),
-                                             for: .touchUpInside)
-//        loginScreenView.addForgotPasswordButtonTarget(target: self,
-//                                                      action: #selector(forgotPasswordButtonTapped), for: .touchUpInside)
+        createDismissKeyboardTapGesture()
+        #if DEBUG
+        loginScreenView.emailTextField.textField.text = "test@test.com"
+        loginScreenView.passwordTextField.textField.text = "123456"
+        #endif
     }
     
     
     // MARK: - Disable Landsacpe
     //=============================
-
+    
     override public var shouldAutorotate: Bool {
         return false
     }
@@ -92,7 +88,7 @@ public final class LoginVC: UIViewController {
                 self.showAlert(title: "Login failed for use", message: "Check if all the fields are correct")
                 return
             }
-            let tabBarVC = TabBarVC()
+            let tabBarVC = TabBarVC(environment: self.enviroment) //TODO: Check if its okay to use env. here
             tabBarVC.modalPresentationStyle = .fullScreen
             self.present(tabBarVC, animated: true, completion: nil)
         })
@@ -106,12 +102,24 @@ public final class LoginVC: UIViewController {
     }
     
     @objc private func forgotPasswordButtonTapped() {
-         //TODO: validate that user exists
-        let forgotPasswordVC = ForgotPasswordVC()
+        //TODO: validate that user exists
+        let forgotPasswordVC = ForgotPasswordVC(environment: enviroment)
         forgotPasswordVC.modalPresentationStyle = .fullScreen
         self.present(forgotPasswordVC, animated: true, completion: nil)
     }
     
+    private func addButtonTarget() {
+        loginScreenView.addSignUpButtonTarget(target: self,
+                                              action: #selector(userSignupButtonTapped),
+                                              for: .touchUpInside)
+        loginScreenView.addLoginButtonTarget(target: self,
+                                             action: #selector(loginButtonTapped),
+                                             for: .touchUpInside)
+        loginScreenView.addForgotPasswordButtonTarget(target: self,
+                                                      action: #selector(forgotPasswordButtonTapped),
+                                                      for: .touchUpInside)
+    }
+
     //TODO: consider writing a show alert service instead of an extension
     //TODO: Add animations
     

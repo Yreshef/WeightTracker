@@ -10,20 +10,17 @@ import UIKit
 
 public class HomeView: UIView {
     
+    //TODO: Figure out what method i want to show the user's 1st time logging in
+    
     // MARK: - Properties
     //=============================
-    //TODO: Implement 4 views to display data to the user.
     
-    //TODO: Add a new user landing page to set up the ui before showing the
-    //      home screen for the 1st time
+    private let bgColor = Constants.backgroundColor
     
-    let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
-    
-    let circleDataView: UIView = CircleDataView()
-    let startDataView: UIView = HomeDataView(title: "Start", weight: "0")
-    let goalDataView: UIView = HomeDataView(title: "Goal", weight: "0")
-    
-    let homeBMIScaleView: UIView = HomeBMIScaleView()
+    let circleDataView = CircleDataView()
+    let startDataView = HomeDataView(title: "Start", weight: "0")
+    let goalDataView = HomeDataView(title: "Goal", weight: "0")
+    let homeBMIScaleView = HomeBMIScaleView()
     
     
     // MARK: - Initializers
@@ -137,9 +134,20 @@ public class HomeView: UIView {
         bmiStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         bmiStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         bmiStackView.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        
+        homeBMIScaleView.clipsToBounds = true
+        homeBMIScaleView.layer.cornerRadius = 10
     }
     
-    //TODO: Ask dan why can't i call functions from the other views
-    private func populateUI(bmi: Float) {
+    func populateUI(startingWeight: Float, goalWeight: Float, bmi: Float, progress: Int, currentWeight: Float) {
+        startDataView.populateUI(weight: startingWeight)
+        goalDataView.populateUI(weight: goalWeight)
+        homeBMIScaleView.populateUI(bmi: bmi)
+        circleDataView.populateUI(progress: progress, currentWeight: currentWeight)
+    }
+    
+    func addNewEntryButtonTarget(target: Any, action: Selector,
+                                 for event: UIControl.Event) {
+        addButton.addTarget(target, action: action, for: event)
     }
 }

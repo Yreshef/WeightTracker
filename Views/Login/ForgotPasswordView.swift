@@ -12,9 +12,8 @@ public class ForgotPasswordView: UIView {
     
     // MARK: - Components
     //=============================
-    private let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
-    private let continueImage: UIImage? = UIImage(named: "ContinueButton")
-
+    private let bgColor: UIColor = UIColor(named: "yaleBlue") ?? .black
+    private let emailImage: UIImage? = UIImage(named: "emailWhite")
 
     
     // MARK: - Life Cycle
@@ -24,11 +23,8 @@ public class ForgotPasswordView: UIView {
         super.init(frame: .zero)
         
         backgroundColor = bgColor
-        
-        addSubview(titleStackView)
-        addSubview(textFieldStackView)
-        addSubview(restoreStackView)
-        addSubview(backButton)
+        addSubview(mainStackView)
+        addSubview(bottomStackView)
         
         setConstraint()
         setUIElements()
@@ -43,44 +39,55 @@ public class ForgotPasswordView: UIView {
     // MARK: - Subviews
     //=============================
     
-    private let title = UILabel()
-    private let infoLabel = UILabel()
-    private let emailTextField = WTUnderlineTextField()
-    private let restoreLabel = UILabel()
-    private let restoreButton = UIButton()
-    private let backButton = UIButton()
+    public let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = """
+        Don't worry, it happens to the best of us.
+        Please enter you email below, and we'll get on fixing it right away!
+        """
+        label.font = UIFont(name: "Roboto", size: 17)
+        label.textAlignment = .left
+        label.numberOfLines = 0
+        label.textColor = .white
+        return label
+    }()
     
-    private lazy var titleStackView: UIStackView = { [unowned self] in
-        let stackview = UIStackView(arrangedSubviews: [self.title])
+    public let emailTextField = WTUnderlineTextField()
+    public let submitButton = WTButton()
+    
+    public let signInButton: UIButton = {
+        let button = UIButton()
+        
+        let attributedTitle = NSMutableAttributedString(string: "Already have an account? ", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white])
+        attributedTitle.append(NSAttributedString(string: "Sign In", attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16), NSAttributedString.Key.foregroundColor: UIColor.white]))
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        
+        return button
+    }()
+    
+    private lazy var mainStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [self.titleLabel,
+                                                       self.emailTextField,
+                                                       self.submitButton])
         
         stackview.axis = .vertical
         stackview.alignment = .fill
+        stackview.distribution = .fillProportionally
+        stackview.spacing = 30
+        
+        return stackview
+    }()
+    
+    private lazy var bottomStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [self.signInButton])
+        
+        stackview.axis = .horizontal
+        stackview.alignment = .center
         stackview.distribution = .fill
         
         return stackview
     }()
-    
-    private lazy var textFieldStackView: UIStackView = { [unowned self] in
-        let stackview = UIStackView(arrangedSubviews: [self.infoLabel,
-                                                       self.emailTextField])
-        
-        stackview.axis = .vertical
-        stackview.alignment = .fill
-        stackview.distribution = .fillEqually
-        
-        return stackview
-    }()
-    
-    private lazy var restoreStackView: UIStackView = { [unowned self] in
-        let stackview = UIStackView(arrangedSubviews: [self.restoreLabel,
-                                                       self.restoreButton])
-        
-        stackview.axis = .horizontal
-        stackview.alignment = .fill
-        stackview.distribution = .fillProportionally
-        
-        return stackview
-    }()
+
     
     
     
@@ -89,66 +96,45 @@ public class ForgotPasswordView: UIView {
     
     private func setConstraint() {
         
-        titleStackView.translatesAutoresizingMaskIntoConstraints = false
-        titleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 120).isActive = true
-        titleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-
-
+        mainStackView.translatesAutoresizingMaskIntoConstraints = false
+        mainStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 250).isActive = true
+        mainStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
         
-        textFieldStackView.translatesAutoresizingMaskIntoConstraints = false
-        textFieldStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        textFieldStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        textFieldStackView.bottomAnchor.constraint(equalTo: restoreStackView.topAnchor, constant: -36).isActive = true
-
-
+        self.emailTextField.translatesAutoresizingMaskIntoConstraints = false
+        self.emailTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-        restoreStackView.translatesAutoresizingMaskIntoConstraints = false
-        restoreStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        restoreStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-        restoreStackView.bottomAnchor.constraint(equalTo: backButton.topAnchor, constant: -150).isActive = true
-        
-        backButton.translatesAutoresizingMaskIntoConstraints = false
-        backButton.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-        backButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -36).isActive = true
+        bottomStackView.translatesAutoresizingMaskIntoConstraints = false
+        bottomStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        bottomStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+        bottomStackView.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: 0).isActive = true
+    }
+    //TODO: Change the name of this function
+    func addSignInButtonTarget(target: Any,
+                               action: Selector,
+                               for event: UIControl.Event) {
+        signInButton.addTarget(target, action: action, for: event)
     }
     
-    func addBackButtonTarget(target: Any,
-                                    action: Selector,
-                                    for event: UIControl.Event) {
-          backButton.addTarget(target, action: action, for: event)
-      }
+    func addSubmitButtonTarget(target: Any,
+                               action: Selector,
+                               for event: UIControl.Event) {
+        submitButton.addTarget(target, action: action, for: event)
+    }
     
     private func setKeyboardType() {
          emailTextField.textField.keyboardType = .emailAddress
     }
     
     private func setUIElements() {
-        title.text = "Trouble\nlogging\nin?"
-        title.numberOfLines = 3
-        title.lineBreakMode = .byWordWrapping
-        title.textColor = .white
-        title.font = UIFont(name: "Roboto-Bold", size: 45)
-        
-        infoLabel.text = """
-        Don't worry, it happens to the best of us.
-        Please enter you email and we'll get on fixin it right away!
-        """
-        infoLabel.textColor = .white
-        infoLabel.font = UIFont(name: "Roboto-Bold", size: 20) ?? UIFont.systemFont(ofSize: 50)
-        infoLabel.numberOfLines = 0
-        infoLabel.lineBreakMode = .byWordWrapping
         
         emailTextField.textField.setAttributedText(placeholder: "Email")
-        
-        restoreLabel.text = "Restore"
-        restoreLabel.textColor = .white
-        restoreLabel.font = UIFont(name: "Roboto-Bold", size: 30) ?? UIFont.systemFont(ofSize: 40)
-        
-        restoreButton.setImage(continueImage, for: .normal)
-        
-        backButton.setTitle("Back", for: .normal)
-        backButton.underlineText()
-        backButton.titleLabel?.textColor = .white
+        emailTextField.textField.leftView = UIImageView(image: emailImage)
+        emailTextField.textField.leftViewMode = UITextField.ViewMode.always
+
+        submitButton.setTitle("Submit", for: .normal)
+        submitButton.setTitleColor(UIColor(named: "yaleBlue"), for: .normal)
+        submitButton.backgroundColor = .white
         
     }
 }

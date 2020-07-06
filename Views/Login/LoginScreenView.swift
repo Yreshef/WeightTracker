@@ -14,8 +14,6 @@ public final class LoginScreenView: UIView {
     // MARK: - Components
     //=============================
     
-    private let bgColor: UIColor = UIColor(named: "yaleBlue") ?? .black
-    
     private let emailImage: UIImage? = UIImage(named: "emailWhite")
     private let passwordImage: UIImage? = UIImage(named: "lockWhite")
     
@@ -26,7 +24,7 @@ public final class LoginScreenView: UIView {
     public init() {
         super.init(frame: .zero)
         
-        backgroundColor = bgColor
+        backgroundColor = Constants.backgroundColor
         
         addSubview(middleStackView)
         addSubview(forgotPasswordButton)
@@ -66,7 +64,6 @@ public final class LoginScreenView: UIView {
         button.setTitle("Forgot password?", for: .normal)
         button.setTitleColor(UIColor(named: "platinum") ?? UIColor.green, for: .normal)
         button.titleLabel?.font = .systemFont(ofSize: 14)
-        button.showsTouchWhenHighlighted = true
         return button
     }()
     
@@ -132,10 +129,10 @@ public final class LoginScreenView: UIView {
         signInButton.addTarget(target, action: action, for: event)
     }
     
-//    func addForgotPasswordButtonTarget(target: Any, action: Selector,
-//                                       for event: UIControl.Event) {
-//        forgotPasswordButton.addTarget(target, action: action, for: event)
-//    }
+    func addForgotPasswordButtonTarget(target: Any, action: Selector,
+                                       for event: UIControl.Event) {
+        forgotPasswordButton.addTarget(target, action: action, for: event)
+    }
     
     private func setKeyboardType() {
         emailTextField.textField.keyboardType = .emailAddress

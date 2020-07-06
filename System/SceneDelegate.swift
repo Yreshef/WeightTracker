@@ -55,7 +55,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func onUserSignedIn() {
         let appDelegate = UIApplication.shared.delegate as? AppDelegate
-        self.window?.rootViewController = HomeVC()
+        self.window?.rootViewController = HomeVC(environment: appDelegate!.environment)
     }
 
     private func onUserSignedOut() {

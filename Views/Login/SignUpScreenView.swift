@@ -97,7 +97,7 @@ public final class SignUpScreenView: UIView {
         middleStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 250).isActive = true
         middleStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
         middleStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
-
+        
         
         
         bottomStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -138,12 +138,17 @@ public final class SignUpScreenView: UIView {
         
     }
     
-    //    func addSignUpButtonTarget(target: Any,
-    //                               action: Selector,
-    //                               for event: UIControl.Event){
-    //        signUpButton.addTarget(target, action: action, for: event)
-    //
-    //    }
+    public func addSignUpButtonTarget(target: Any,
+                                      action: Selector,
+                                      for event: UIControl.Event){
+        signUpButton.addTarget(target, action: action, for: event)
+    }
+    
+    public func addSignInButtonTarget(target: Any,
+                                      action: Selector,
+                                      for event: UIControl.Event) {
+        signInButton.addTarget(target, action: action, for: event)
+    }
 }
 
 

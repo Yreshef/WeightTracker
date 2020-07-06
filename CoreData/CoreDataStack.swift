@@ -21,7 +21,7 @@ class CoreDataStack: CoreDataLogic{
         container.loadPersistentStores {
             (storeDescription, error) in
             if let error = error as NSError? {
-                print("Unresolved error \(error), \(error.userInfo)")
+                fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
         return container

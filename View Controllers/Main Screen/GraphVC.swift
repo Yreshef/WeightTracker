@@ -13,20 +13,29 @@ public final class GraphVC: UIViewController {
     
     // MARK: - Properties
     //=============================
+    private let weightFacade: WeightFacadable
+    private let databaseFacade: DatabaseFacadable
+    private let environment: AppEnvironment
     
-    private let graphView = GraphView()
+    
     
     // MARK: - Initializers
     //=============================
     
-    init() {
+    init(environment: AppEnvironment) {
+        weightFacade = environment.weightFacade
+        databaseFacade = environment.databaseFacade
+        self.environment = environment
+        
         super.init(nibName: nil, bundle: nil)
-        view.addSubview(graphView)
-        graphView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
+//        view.addSubview(graphView)
+//        graphView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+        let graphView = GraphView(coder: coder)
+
     }
     
     // MARK: - View Life Cycle
@@ -34,13 +43,47 @@ public final class GraphVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
+        createAnEntry()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+
+    }
+    
+    // MARK: - Disable Landsacpe
+    //=============================
+
+    override public var shouldAutorotate: Bool {
+        return false
+    }
+    
+    override public var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .portrait
     }
     
     
     // MARK: - Methods
     //=============================
+    private func createAnEntry() {
+        let measurement = MeasurementEntry(weight: 10, date: Date())
+        do{
+            try databaseFacade.create(measurement: measurement)
+        } catch {
+            print("Dont do this!")
+        }
+    }
+    private func configureChartData() {
+        //TODO: Implement
+        let measurements: [MeasurementEntry] = databaseFacade.retrieveAll()
+
+    }
 }
+
+//TODO: Ask dan if anything can be implemented in the tabBarVC.
+/**
+ Create a graph showing the user's progress over a given period of time: weekly, monthly yearly etc.
+ The graph will be populated  with every new entry, so needs to be refreshed every time there is a new input.
+ add different types of graphs after the 1st one is working as intended.
+ */

@@ -7,39 +7,32 @@
 //
 
 import UIKit
-import Charts
+import Macaw
 
-public class GraphView: UIView{
+public class GraphView: MacawView {
     
     // MARK: - Properties
     //=============================
+    
+    private static var fiveEntries = createDummyData()
+    
+    private static let maxValue = 120
+    private static let maxValueLineHeight = 250
+    private static let lineWidth: Double = 200
+    
+    private static var dataDivisor = Float(maxValue/maxValueLineHeight)
+    private static var adjustedData: [Float] = fiveEntries.map({ $0.weight / dataDivisor})
+    private var animations: [Animation] = []
         
-    let bgColor: UIColor = UIColor(named: "metallicSeaweed") ?? .black
-    let label = UILabel()
-
-    //TODO: Add a graph view
-    
-    //TODO: Add 2 variables to represent the date the data was saved and
-    //      the number of KG/Lbs for the given date.
-    
-    
-    // MARK: - Initializers
-    //=============================
-    
-    init() {
-        super.init(frame: .zero)
-        backgroundColor = bgColor
-        addSubview(label)
-        label.text = "Hello"
-        label.font = UIFont.systemFont(ofSize: 35)
+        // MARK: - Initializers
+        //=============================
         
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
-        label.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 30).isActive = true
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    required init?(coder aDecoder: NSCoder) {
+        super.init(node: GraphView.createChart(), coder: aDecoder)
+        
+        backgroundColor = Constants.backgroundColor
+        addSubview(chartStackView)
+        addConstraints()
     }
     
     
@@ -47,13 +40,65 @@ public class GraphView: UIView{
     // MARK: - Subviews
     //=============================
     
-    //TODO: Add constraints for the subviews
     
     
     
     
-    // MARK: - Setters
+    private lazy var chartStackView: UIStackView = {
+        let stackview = UIStackView(arrangedSubviews: [])
+        
+        stackview.axis = .vertical
+        stackview.alignment = .fill
+        stackview.distribution = .fillEqually
+        
+        
+        
+        return stackview
+    }()
+    
+    
+    
+    // MARK: - Methods
     //=============================
-
-
+    
+    private func addConstraints() {
+        chartStackView.translatesAutoresizingMaskIntoConstraints = false
+        chartStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 36).isActive = true
+        chartStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 36).isActive = true
+        chartStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -36).isActive = true
+    }
+    
+    private static func createChart() -> Group{
+        var items: [Node] = addXAxisItems() + addXAxisItems()
+        items.append(createBars())
+        return Group(contents: items, place: .identity)
+    }
+    
+    private static func addYAxisItems() -> [Node]{
+        let maxLines = 6
+        let lineInterval = Int(maxValue/maxLines)
+        let yAxisHeight: Double = 200
+        let lineSpacing: Double = 30
+        return []
+    }
+    
+    private static func addXAxisItems() -> [Node]{
+        return []
+    }
+    
+    private static func createBars() -> Group {
+        return Group()
+    }
+    
+    private static func createDummyData() -> [MeasurementEntry] {
+        
+        let one = MeasurementEntry(weight: 91, date: Date().addingTimeInterval(-10_000))
+        let two = MeasurementEntry(weight: 90, date: Date().addingTimeInterval(-5_000))
+        let three = MeasurementEntry(weight: 88, date: Date().addingTimeInterval(-3_000))
+        let four = MeasurementEntry(weight: 85, date: Date().addingTimeInterval(-1_300))
+        let five = MeasurementEntry(weight: 82, date: Date())
+        
+        return [ one, two, three, four, five]
+    }
+    
 }

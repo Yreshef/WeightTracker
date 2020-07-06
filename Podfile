@@ -10,9 +10,8 @@ target 'WeightTracker' do
 	pod 'Firebase/Core'
 	pod 'Firebase/Database'
 	pod 'Firebase/Auth'
-	pod 'SnapKit', '~> 5.0.0'
-	pod 'Charts'
-	pod 'TGPControls'
+	pod "Macaw", "0.9.6"
+	pod 'SOTabBar'
 		
 
 end

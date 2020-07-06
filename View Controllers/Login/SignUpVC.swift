@@ -26,14 +26,14 @@ public class SignUpVC: UIViewController {
     init(environment: AppEnvironment) {
         self.authService = environment.authService
         self.environment = environment
-
+        
         super.init(nibName: nil, bundle: nil)
         view.addSubview(signUpScreenView)
         signUpScreenView.anchor(top: view.topAnchor,
                                 leading: view.leadingAnchor,
                                 bottom: view.bottomAnchor,
                                 trailing: view.trailingAnchor)
-//        addButtonTargets()
+        addButtonTargets()
     }
     
     required init?(coder: NSCoder) {
@@ -45,16 +45,12 @@ public class SignUpVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-
-    }
-    
-    public override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        createDismissKeyboardTapGesture()
     }
     
     // MARK: - Disable Landscape
     //=============================
-
+    
     override public var shouldAutorotate: Bool {
         return false
     }
@@ -66,30 +62,17 @@ public class SignUpVC: UIViewController {
     // MARK: - Methods
     //=============================
     
-    private func alertMessage(alertMessage: String) {
-        let alertController = UIAlertController(title: "Unable to submit",
-        message: "Sorry, your \(alertMessage)s were not matcahing.",
-        preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(okAction)
-        self.present(alertController, animated: true)
-    }
-    
-//    private func addButtonTargets() {
-//        signUpScreenView.addSignUpButtonTarget(target: self, action: #selector(userSignupButtonTapped), for: .touchUpInside)
-//    }
-    
     @objc private func userSignupButtonTapped() {
         guard let email = signUpScreenView.emailTextField.textField.text,
             let password = signUpScreenView.passwordTextField.textField.text,
             let username = signUpScreenView.usernameTextField.textField.text else {
-            print("Hello")
-            return
+                return
         }
-        //TODO: Fix this! v
+        
+        //TODO: Fix this! Check if environment is okay here
         authService.signUp(email: email, password: password) { (user) in
             if user != nil {
-                let tabBarVC = TabBarVC()
+                let tabBarVC = TabBarVC(environment: self.environment)
                 tabBarVC.modalPresentationStyle = .fullScreen
                 self.present(tabBarVC, animated: true, completion: nil)
             } else {
@@ -98,11 +81,31 @@ public class SignUpVC: UIViewController {
         }
     }
     
-    @objc private func backButtonTapped() {
-        //TODO: How to go back to previous VC without calling the enviornemnt VC
-        
+    @objc private func signInButtonTapped() {
+        let loginVC = LoginVC(environment: environment)
+        loginVC.modalPresentationStyle = .fullScreen
+        self.present(loginVC, animated: true, completion: nil)
     }
-
+    
+    private func addButtonTargets() {
+        signUpScreenView.addSignUpButtonTarget(target: self,
+                                               action: #selector(userSignupButtonTapped),
+                                               for: .touchUpInside)
+        signUpScreenView.addSignInButtonTarget(target: self,
+                                               action: #selector(signInButtonTapped),
+                                               for: .touchUpInside)
+    }
+    
+    
+    private func alertMessage(alertMessage: String) {
+        let alertController = UIAlertController(title: "Unable to submit",
+                                                message: "Sorry, your \(alertMessage)s were not matcahing.",
+            preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default)
+        alertController.addAction(okAction)
+        self.present(alertController, animated: true)
+    }
+    
     //TODO: Add animations
 }
 
