@@ -15,6 +15,7 @@ class DailyEntryVC: UIViewController {
     private let weightFacade: WeightFacadable
     private let environment: AppEnvironment
     
+    
     private let dailyEntryView = DailyEntryView()
     private let entryCellView = EntryCellView()
     
@@ -79,18 +80,18 @@ class DailyEntryVC: UIViewController {
         return headerSpacingBetweenCells
     }
     
-    internal override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
     
-    private func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Implement!
     }
     
-    internal override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! EntryCellView
         
-        cell.dateLabel.text = dailyEntires[indexPath.row].date.getInEuropeanDateFormat()
+        cell.dateLabel.text = dailyEntires[indexPath.row].date.readableRepresentation
         
         let attributedTitle = NSMutableAttributedString(string: String(dailyEntires[indexPath.row].weight), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "KG", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black]))
@@ -98,6 +99,14 @@ class DailyEntryVC: UIViewController {
         cell.weightLabel.attributedText = attributedTitle
         
         return cell
+    }
+    //TODO: Implement
+    internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 0
+    }
+    //TODO: Implement
+    internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 0
     }
     
     
@@ -114,10 +123,9 @@ class DailyEntryVC: UIViewController {
 }
 
 
-extension UIViewController: UITableViewDelegate, UITableViewDataSource {
-    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int { return 0 }
+extension DailyEntryVC: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell { return UITableViewCell() }
+
 }
 
 

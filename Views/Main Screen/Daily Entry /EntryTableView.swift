@@ -10,11 +10,7 @@ import UIKit
 
 public class EntryTableView: UITableView {
     
-    // MARK: - Components
-    //=============================
-    
-    
-    // MARK: - Life Cycle
+    // MARK: - Initializers
     //=============================
     init() {
         super.init(frame: .zero, style: .plain)

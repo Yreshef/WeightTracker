@@ -23,7 +23,7 @@
 		1A3D7B3E2491805500005F04 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3D7B3D2491805500005F04 /* ForgotPasswordVC.swift */; };
 		1A3DBAA824A0F502008E07A3 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3DBAA724A0F502008E07A3 /* OnboardingView.swift */; };
 		1A3F57CD24A5DB8F00A700D1 /* MeasurementUnitVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F57CC24A5DB8F00A700D1 /* MeasurementUnitVC.swift */; };
-		1A3F57CF24A5DB9800A700D1 /* AboutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F57CE24A5DB9800A700D1 /* AboutVC.swift */; };
+		1A3F57CF24A5DB9800A700D1 /* HelpAndFeedbackVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F57CE24A5DB9800A700D1 /* HelpAndFeedbackVC.swift */; };
 		1A3F57D124A5DBA300A700D1 /* EditProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A3F57D024A5DBA300A700D1 /* EditProfileVC.swift */; };
 		1A40CA5624A33B2C0008C67A /* UIViewController+TextfieldReturn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A40CA5524A33B2C0008C67A /* UIViewController+TextfieldReturn.swift */; };
 		1A45B3AB2497F25D006C0F4B /* CircleDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A45B3AA2497F25D006C0F4B /* CircleDataView.swift */; };
@@ -31,6 +31,8 @@
 		1A466B83249372EF00E48917 /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A466B82249372EF00E48917 /* SignUpVC.swift */; };
 		1A466B862493730200E48917 /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A466B852493730200E48917 /* ForgotPasswordView.swift */; };
 		1A466B882493730900E48917 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A466B872493730900E48917 /* SignUpView.swift */; };
+		1A46AB3124B4CDD0001FC2AA /* HelpAndFeedbackSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46AB3024B4CDD0001FC2AA /* HelpAndFeedbackSections.swift */; };
+		1A46AB3324B4DE9A001FC2AA /* HelpAndFeedbackCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A46AB3224B4DE9A001FC2AA /* HelpAndFeedbackCellView.swift */; };
 		1A4FA67E248D2A7000B9E5E5 /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A4FA671248D2A7000B9E5E5 /* Roboto-Medium.ttf */; };
 		1A4FA67F248D2A7000B9E5E5 /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A4FA672248D2A7000B9E5E5 /* Roboto-Light.ttf */; };
 		1A4FA680248D2A7000B9E5E5 /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1A4FA673248D2A7000B9E5E5 /* Roboto-Regular.ttf */; };
@@ -49,6 +51,7 @@
 		1A4FA691248D33E200B9E5E5 /* MeasurementMO+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FA68F248D33E200B9E5E5 /* MeasurementMO+CoreDataClass.swift */; };
 		1A4FA692248D33E200B9E5E5 /* MeasurementMO+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FA690248D33E200B9E5E5 /* MeasurementMO+CoreDataProperties.swift */; };
 		1A4FA694248D3B7F00B9E5E5 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A4FA693248D3B7F00B9E5E5 /* AppEnvironment.swift */; };
+		1A5F015224B4C7B200C62E3B /* HelpAndFeedbackTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A5F015124B4C7B200C62E3B /* HelpAndFeedbackTableView.swift */; };
 		1A6021CE24B2D885003CF03F /* EntryTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6021CD24B2D885003CF03F /* EntryTableView.swift */; };
 		1A648CA4248C001D00DE2E2B /* WTButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A648CA3248C001D00DE2E2B /* WTButton.swift */; };
 		1A66F75624812A500000CD30 /* WeightTracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 1A66F75424812A500000CD30 /* WeightTracker.xcdatamodeld */; };
@@ -106,6 +109,7 @@
 		1AE65E6024B2E03100C0F9F9 /* DailyEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AE65E5F24B2E03100C0F9F9 /* DailyEntryView.swift */; };
 		1AF1A8F024936D0700A86A04 /* GraphVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AF1A8EF24936D0700A86A04 /* GraphVC.swift */; };
 		1AFCA33E24936D5A0057E54E /* GraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFCA33D24936D5A0057E54E /* GraphView.swift */; };
+		1AFD4DD524B4C4E10018D77C /* HelpAndFeedbackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1AFD4DD424B4C4E10018D77C /* HelpAndFeedbackView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -125,7 +129,7 @@
 		1A3D7B3D2491805500005F04 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		1A3DBAA724A0F502008E07A3 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		1A3F57CC24A5DB8F00A700D1 /* MeasurementUnitVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementUnitVC.swift; sourceTree = "<group>"; };
-		1A3F57CE24A5DB9800A700D1 /* AboutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutVC.swift; sourceTree = "<group>"; };
+		1A3F57CE24A5DB9800A700D1 /* HelpAndFeedbackVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackVC.swift; sourceTree = "<group>"; };
 		1A3F57D024A5DBA300A700D1 /* EditProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileVC.swift; sourceTree = "<group>"; };
 		1A40CA5524A33B2C0008C67A /* UIViewController+TextfieldReturn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+TextfieldReturn.swift"; sourceTree = "<group>"; };
 		1A45B3AA2497F25D006C0F4B /* CircleDataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleDataView.swift; sourceTree = "<group>"; };
@@ -133,6 +137,8 @@
 		1A466B82249372EF00E48917 /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		1A466B852493730200E48917 /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		1A466B872493730900E48917 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
+		1A46AB3024B4CDD0001FC2AA /* HelpAndFeedbackSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackSections.swift; sourceTree = "<group>"; };
+		1A46AB3224B4DE9A001FC2AA /* HelpAndFeedbackCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackCellView.swift; sourceTree = "<group>"; };
 		1A4FA671248D2A7000B9E5E5 /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		1A4FA672248D2A7000B9E5E5 /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
 		1A4FA673248D2A7000B9E5E5 /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
@@ -151,6 +157,7 @@
 		1A4FA68F248D33E200B9E5E5 /* MeasurementMO+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MeasurementMO+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		1A4FA690248D33E200B9E5E5 /* MeasurementMO+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MeasurementMO+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		1A4FA693248D3B7F00B9E5E5 /* AppEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
+		1A5F015124B4C7B200C62E3B /* HelpAndFeedbackTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackTableView.swift; sourceTree = "<group>"; };
 		1A6021CD24B2D885003CF03F /* EntryTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryTableView.swift; sourceTree = "<group>"; };
 		1A648CA3248C001D00DE2E2B /* WTButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WTButton.swift; sourceTree = "<group>"; };
 		1A66F75524812A500000CD30 /* WeightTracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeightTracker.xcdatamodel; sourceTree = "<group>"; };
@@ -210,6 +217,7 @@
 		1AE65E5F24B2E03100C0F9F9 /* DailyEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyEntryView.swift; sourceTree = "<group>"; };
 		1AF1A8EF24936D0700A86A04 /* GraphVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphVC.swift; sourceTree = "<group>"; };
 		1AFCA33D24936D5A0057E54E /* GraphView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphView.swift; sourceTree = "<group>"; };
+		1AFD4DD424B4C4E10018D77C /* HelpAndFeedbackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpAndFeedbackView.swift; sourceTree = "<group>"; };
 		C372C46E4614091CB018E000 /* Pods_WeightTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeightTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CF9B934E653173027A4799E0 /* Pods-WeightTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeightTracker.release.xcconfig"; path = "Target Support Files/Pods-WeightTracker/Pods-WeightTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -288,7 +296,7 @@
 			isa = PBXGroup;
 			children = (
 				1A3F57CC24A5DB8F00A700D1 /* MeasurementUnitVC.swift */,
-				1A3F57CE24A5DB9800A700D1 /* AboutVC.swift */,
+				1A3F57CE24A5DB9800A700D1 /* HelpAndFeedbackVC.swift */,
 				1A3F57D024A5DBA300A700D1 /* EditProfileVC.swift */,
 			);
 			path = "Settings SubVC";
@@ -297,8 +305,8 @@
 		1A456F2124A4CEE50049BD82 /* SettingsTableView */ = {
 			isa = PBXGroup;
 			children = (
-				1A2F0A56249AABE400D61FE5 /* SettingsCellView.swift */,
-				1AC5D1BD24B0A53D00C3371B /* MeasurementUnitCellView.swift */,
+				1A5F014F24B4C77300C62E3B /* Subviews */,
+				1A5F015024B4C78000C62E3B /* CellViews */,
 			);
 			path = SettingsTableView;
 			sourceTree = "<group>";
@@ -342,6 +350,25 @@
 				1A4FA67D248D2A7000B9E5E5 /* Roboto-Black.ttf */,
 			);
 			path = Roboto;
+			sourceTree = "<group>";
+		};
+		1A5F014F24B4C77300C62E3B /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				1AFD4DD424B4C4E10018D77C /* HelpAndFeedbackView.swift */,
+				1A5F015124B4C7B200C62E3B /* HelpAndFeedbackTableView.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		1A5F015024B4C78000C62E3B /* CellViews */ = {
+			isa = PBXGroup;
+			children = (
+				1A2F0A56249AABE400D61FE5 /* SettingsCellView.swift */,
+				1AC5D1BD24B0A53D00C3371B /* MeasurementUnitCellView.swift */,
+				1A46AB3224B4DE9A001FC2AA /* HelpAndFeedbackCellView.swift */,
+			);
+			path = CellViews;
 			sourceTree = "<group>";
 		};
 		1A6021CC24B2D865003CF03F /* Daily Entry  */ = {
@@ -480,6 +507,7 @@
 				1A96BE512481039100668FA1 /* Person.swift */,
 				1A8CFBA124814AFE00150C4A /* MeasurementEntry.swift */,
 				1A8C7ECA24A4F0E400950A0C /* SettingsSections.swift */,
+				1A46AB3024B4CDD0001FC2AA /* HelpAndFeedbackSections.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -778,18 +806,21 @@
 				1A3DBAA824A0F502008E07A3 /* OnboardingView.swift in Sources */,
 				1A24C111249B5C6E0062F717 /* DailyEntryVC.swift in Sources */,
 				1A7210D8248FE0A20021E6F3 /* WTNavBar.swift in Sources */,
+				1AFD4DD524B4C4E10018D77C /* HelpAndFeedbackView.swift in Sources */,
 				1A3D7B3E2491805500005F04 /* ForgotPasswordVC.swift in Sources */,
 				1AD3DE04249D12C10064F1B1 /* AuthService.swift in Sources */,
 				1A26D0202494E8DC00D02C43 /* LoginScreenView.swift in Sources */,
 				1A01DD64249B54AE00CDE809 /* TabBarView.swift in Sources */,
 				1A4FA68E248D33D800B9E5E5 /* PersonMO+CoreDataClass.swift in Sources */,
 				1A8CFBA224814AFE00150C4A /* MeasurementEntry.swift in Sources */,
+				1A5F015224B4C7B200C62E3B /* HelpAndFeedbackTableView.swift in Sources */,
 				1A8CFBA724814DFC00150C4A /* WeightFacade.swift in Sources */,
 				1A2C5D76248CCC04009494BC /* UIView+Keyboard.swift in Sources */,
 				1A768ABC249022770016BD30 /* TabBarVC.swift in Sources */,
 				1A66F75624812A500000CD30 /* WeightTracker.xcdatamodeld in Sources */,
 				1A96BE522481039100668FA1 /* Person.swift in Sources */,
-				1A3F57CF24A5DB9800A700D1 /* AboutVC.swift in Sources */,
+				1A3F57CF24A5DB9800A700D1 /* HelpAndFeedbackVC.swift in Sources */,
+				1A46AB3124B4CDD0001FC2AA /* HelpAndFeedbackSections.swift in Sources */,
 				1AA8033D2494018D005F1A23 /* WTUnderlineTextField.swift in Sources */,
 				1A8CFBA92481507C00150C4A /* DateUtilities.swift in Sources */,
 				1A4FA691248D33E200B9E5E5 /* MeasurementMO+CoreDataClass.swift in Sources */,
@@ -811,6 +842,7 @@
 				1A45B3AB2497F25D006C0F4B /* CircleDataView.swift in Sources */,
 				1A4FA68D248D33D800B9E5E5 /* PersonMO+CoreDataProperties.swift in Sources */,
 				1A6021CE24B2D885003CF03F /* EntryTableView.swift in Sources */,
+				1A46AB3324B4DE9A001FC2AA /* HelpAndFeedbackCellView.swift in Sources */,
 				1A45B3AD2498B99E006C0F4B /* CircularDataView.swift in Sources */,
 				1AFCA33E24936D5A0057E54E /* GraphView.swift in Sources */,
 				1A648CA4248C001D00DE2E2B /* WTButton.swift in Sources */,

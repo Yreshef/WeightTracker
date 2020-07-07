@@ -89,7 +89,7 @@ class SettingsVC: UITableViewController {
         case .Profile:
             if let profile = ProfileOptions(rawValue: indexPath.row) {
                 cell.setup(type: profile)
-               
+                
             }
         }
         return cell
@@ -114,7 +114,7 @@ class SettingsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let section = SettingsSections(rawValue: indexPath.section) else { return }
- 
+        
         switch section {
         case .General:
             if let option = GeneralOptions(rawValue: indexPath.row) {
@@ -123,9 +123,9 @@ class SettingsVC: UITableViewController {
                     let measurementVC = MeasurementUnitVC()
                     self.navigationController?.pushViewController(measurementVC,
                                                                   animated: true)
-                case .about:
-                    let aboutVC = AboutVC()
-                    self.navigationController?.pushViewController(aboutVC,
+                case .helpAndFeedback:
+                    let helpAndFeedbackVC = HelpAndFeedbackVC()
+                    self.navigationController?.pushViewController(helpAndFeedbackVC,
                                                                   animated: true)
                 case .notifications:
                     return
@@ -139,7 +139,9 @@ class SettingsVC: UITableViewController {
                     self.navigationController?.pushViewController(editProfileVC,
                                                                   animated: true)
                 case .logout:
-                    logoutAlert()
+                    DispatchQueue.main.async {
+                        self.logoutAlert()
+                    }
                 }
             }
         }
@@ -154,7 +156,7 @@ class SettingsVC: UITableViewController {
         tableView.register(SettingsCellView.self, forCellReuseIdentifier: "cellId")
         tableView.rowHeight = rowHeight
         addButtonTarget()
-
+        
         
     }
     
@@ -188,13 +190,13 @@ class SettingsVC: UITableViewController {
     //TODO: Should i add weak self here?
     private func logoutAlert() {
         let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
-               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-               let addAction = UIAlertAction(title: "Logout", style: .destructive) { (action) in
-                self.logout()
-               }
-               alert.addAction(addAction)
-               alert.addAction(cancelAction)
-               self.present(alert, animated: true, completion: nil)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let addAction = UIAlertAction(title: "Logout", style: .destructive) { (action) in
+            self.logout()
+        }
+        alert.addAction(addAction)
+        alert.addAction(cancelAction)
+        self.present(alert, animated: true, completion: nil)
     }
 }
 

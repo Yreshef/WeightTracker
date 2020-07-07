@@ -38,7 +38,7 @@ enum GeneralOptions: Int, CaseIterable, SectionType {
         switch self {
         case .measurementUnit: return true
         case .notifications: return false
-        case .about: return true
+        case .helpAndFeedback: return true
         }
     }
     
@@ -47,19 +47,19 @@ enum GeneralOptions: Int, CaseIterable, SectionType {
         switch self {
         case .measurementUnit: return false
         case .notifications: return true
-        case .about: return false
+        case .helpAndFeedback: return false
         }
     }
     
     case measurementUnit
     case notifications
-    case about
+    case helpAndFeedback
     
     var description: String {
         switch self {
         case .measurementUnit: return "Measurement Unit"
         case .notifications: return "Notifications"
-        case .about: return "About"
+        case .helpAndFeedback: return "Help & Feedback"
         }
     }
 }

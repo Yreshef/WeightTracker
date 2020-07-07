@@ -11,12 +11,7 @@ import UIKit
 
 public class MeasurementUnitCellView: UITableViewCell {
     
-    // MARK: - Components
-    //=============================
-    
-    private let checkmarkImage = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
-    
-    // MARK: - Life Cycle
+    // MARK: - Initializers
     //=============================
     
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -41,18 +36,8 @@ public class MeasurementUnitCellView: UITableViewCell {
         return label
     }()
     
-    lazy var checkmarkButton: UIButton = {
-        let button = UIButton()
-        button.setImage(self.checkmarkImage, for: .normal)
-        button.setTitleColor(.white, for: .normal)
-        button.widthAnchor.constraint(equalToConstant: 50).isActive = true
-        
-        return button
-    }()
-    
     private lazy var cellStackView: UIStackView = {
-        let stackview = UIStackView(arrangedSubviews: [self.measurementUnitLabel,
-                                                       self.checkmarkButton])
+        let stackview = UIStackView(arrangedSubviews: [self.measurementUnitLabel])
         stackview.axis = .horizontal
         stackview.alignment = .leading
         stackview.distribution = .fill
@@ -75,6 +60,12 @@ public class MeasurementUnitCellView: UITableViewCell {
         cellStackView.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
         cellStackView.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
         cellStackView.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
+    }
+    
+    //TODO: Ask Dan about this implementation
+    public override func setSelected(_ selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+        self.accessoryType = selected ? .checkmark : .none
     }
     
 }

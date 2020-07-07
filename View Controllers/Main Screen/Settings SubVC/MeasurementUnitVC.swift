@@ -55,9 +55,7 @@ class MeasurementUnitVC: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! MeasurementUnitCellView
         cell.measurementUnitLabel.text = options[indexPath.row]
-        if cell.measurementUnitLabel.text != "KG" {
-            cell.checkmarkButton.isHidden = true
-        }
+        
         return cell
     }
     

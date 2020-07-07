@@ -20,9 +20,11 @@ public struct Constants {
     static let emailImage = UIImage(named: "emailWhite")
     static let passwordImage = UIImage(named: "passwordWhite")
     static let userImage = UIImage(named: "userWhite")
+    static let checkmarkImage = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
     
     // MARK: - Properties
     //=============================
     static let tableViewRowHeight: CGFloat = 50
+    static let headerHeight: CGFloat = 40
 
 }

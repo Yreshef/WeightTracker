@@ -34,4 +34,26 @@ extension Date {
              calendar: Calendar = Calendar.current) -> Int {
         return calendar.component(componenet, from: self)
     }
+    
+    ///TODO: Clean up the code a bit once UI is set
+    var readableRepresentation: String {
+        let dayFormatter = DateFormatter()
+        let weekdayFormatter = DateFormatter()
+        
+        dayFormatter.dateFormat = "d"
+        weekdayFormatter.dateFormat = "E"
+        
+        let day = dayFormatter.string(from: self)
+        let weekday = weekdayFormatter.string(from: self)
+
+        
+        let numFormatter = NumberFormatter()
+        numFormatter.numberStyle = .ordinal
+        let dayOrdinal = numFormatter.string(from: NSNumber(value: Int(day) ?? 10)) ?? ""
+        
+        return """
+        \(dayOrdinal)
+        \(weekday)
+        """
+    }
 }
