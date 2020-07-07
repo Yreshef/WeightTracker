@@ -43,7 +43,8 @@ class WeightFacade: WeightFacadable {
     
     private func fetchMeasurementHistory() {
         //TODO: fetch actual entries form DB.
-        measurementHistory = [MeasurementEntry](repeating: .stub, count: 10)
+        
+        measurementHistory = [MeasurementEntry](repeating: .stub, count: 20)
     }
 }
 

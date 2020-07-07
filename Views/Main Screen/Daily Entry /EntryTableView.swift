@@ -18,6 +18,8 @@ public class EntryTableView: UITableView {
     //=============================
     init() {
         super.init(frame: .zero, style: .plain)
+        setupUI()
+        self.backgroundColor = .clear
     }
     
     required init?(coder: NSCoder) {
@@ -34,6 +36,15 @@ public class EntryTableView: UITableView {
     }()
     
     
-    // MARK: - Setters
+    // MARK: - Methods
     //=============================
+    
+    private func setConstraints() {
+        tableView.anchor(to: self)
+    }
+    
+    private func setupUI() {
+        addSubview(tableView)
+        setConstraints()
+    }
 }

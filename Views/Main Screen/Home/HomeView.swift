@@ -15,8 +15,6 @@ public class HomeView: UIView {
     // MARK: - Properties
     //=============================
     
-    private let bgColor = Constants.backgroundColor
-    
     let circleDataView = CircleDataView()
     let startDataView = HomeDataView(title: "Start", weight: "0")
     let goalDataView = HomeDataView(title: "Goal", weight: "0")
@@ -28,7 +26,7 @@ public class HomeView: UIView {
     
     init() {
         super.init(frame: .zero)
-        backgroundColor = bgColor
+        backgroundColor = Constants.backgroundColor
         addSubview(mainStackView)
         addSubview(bmiStackView)
         setConstraints()

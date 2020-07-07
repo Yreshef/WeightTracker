@@ -14,7 +14,7 @@ public class MeasurementUnitCellView: UITableViewCell {
     // MARK: - Components
     //=============================
     
-    private let scissorsIsABrother = UIImage(systemName: "scissors", withConfiguration: UIImage.SymbolConfiguration(weight: .light))?.withTintColor(.systemIndigo, renderingMode: .alwaysOriginal)
+    private let checkmarkImage = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
     
     // MARK: - Life Cycle
     //=============================
@@ -41,11 +41,10 @@ public class MeasurementUnitCellView: UITableViewCell {
         return label
     }()
     
-    private lazy var checkmarkButton: UIButton = {
+    lazy var checkmarkButton: UIButton = {
         let button = UIButton()
-        button.setImage(self.scissorsIsABrother, for: .normal)
+        button.setImage(self.checkmarkImage, for: .normal)
         button.setTitleColor(.white, for: .normal)
-        
         button.widthAnchor.constraint(equalToConstant: 50).isActive = true
         
         return button

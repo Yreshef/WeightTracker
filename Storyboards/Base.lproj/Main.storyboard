@@ -247,11 +247,11 @@
                                                         <constraint firstAttribute="height" constant="60" id="FBR-SH-H2y"/>
                                                     </constraints>
                                                 </view>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 KG" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah7-dx-fip">
-                                                    <rect key="frame" x="70" y="0.0" width="60" height="60"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="60 KG asdgsdigjksdig" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ah7-dx-fip">
+                                                    <rect key="frame" x="70" y="0.0" width="166.5" height="60"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="60" id="awy-Wx-whw"/>
-                                                        <constraint firstAttribute="width" constant="60" id="vff-p2-SrV"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="vff-p2-SrV"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
@@ -363,6 +363,10 @@
                                     <constraint firstItem="IX9-Zi-tQN" firstAttribute="leading" secondItem="hxj-mM-x5e" secondAttribute="leading" id="wCh-8B-Tcc"/>
                                 </constraints>
                             </stackView>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kFK-zJ-xWs">
+                                <rect key="frame" x="0.0" y="220" width="414" height="85"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>

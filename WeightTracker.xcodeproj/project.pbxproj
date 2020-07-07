@@ -307,7 +307,9 @@
 			isa = PBXGroup;
 			children = (
 				1A7210D5248FD9540021E6F3 /* HomeView.swift */,
-				1A4E0BE824A0BA4A006EDF29 /* HomeView Subviews */,
+				1A45B3AA2497F25D006C0F4B /* CircleDataView.swift */,
+				1AC3E417249929EA009245CE /* HomeDataView.swift */,
+				1AC3E41924992AA4009245CE /* HomeBMIScaleView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -320,16 +322,6 @@
 				1A466B852493730200E48917 /* ForgotPasswordView.swift */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		1A4E0BE824A0BA4A006EDF29 /* HomeView Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				1A45B3AA2497F25D006C0F4B /* CircleDataView.swift */,
-				1AC3E417249929EA009245CE /* HomeDataView.swift */,
-				1AC3E41924992AA4009245CE /* HomeBMIScaleView.swift */,
-			);
-			path = "HomeView Subviews";
 			sourceTree = "<group>";
 		};
 		1A4FA670248D2A7000B9E5E5 /* Roboto */ = {
@@ -355,10 +347,10 @@
 		1A6021CC24B2D865003CF03F /* Daily Entry  */ = {
 			isa = PBXGroup;
 			children = (
+				1AE65E5F24B2E03100C0F9F9 /* DailyEntryView.swift */,
 				1AE65E5D24B2E02500C0F9F9 /* DatePickerView.swift */,
 				1A6021CD24B2D885003CF03F /* EntryTableView.swift */,
 				1A2F0A58249AAC0000D61FE5 /* EntryCellView.swift */,
-				1AE65E5F24B2E03100C0F9F9 /* DailyEntryView.swift */,
 			);
 			path = "Daily Entry ";
 			sourceTree = "<group>";
@@ -374,13 +366,13 @@
 		1A66F74F24810FD60000CD30 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1A76827624B45CCB00487381 /* Date */,
 				1A76400224A32A760083A47E /* UIViewController */,
 				1ACCB8B0249699AC00DF6837 /* UIButton */,
 				1A2C5D7B248CD631009494BC /* UIFont */,
 				1A23F66B248CB47E00FCEC99 /* UIView */,
 				1A648CA7248C08B700DE2E2B /* UIColor */,
 				1A8CFBA324814C7000150C4A /* Weight.swift */,
-				1A8CFBA82481507C00150C4A /* DateUtilities.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -402,6 +394,14 @@
 				1A40CA5524A33B2C0008C67A /* UIViewController+TextfieldReturn.swift */,
 			);
 			path = UIViewController;
+			sourceTree = "<group>";
+		};
+		1A76827624B45CCB00487381 /* Date */ = {
+			isa = PBXGroup;
+			children = (
+				1A8CFBA82481507C00150C4A /* DateUtilities.swift */,
+			);
+			path = Date;
 			sourceTree = "<group>";
 		};
 		1A8CFBA524814DDD00150C4A /* Services */ = {

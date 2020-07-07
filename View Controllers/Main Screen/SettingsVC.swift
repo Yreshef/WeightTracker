@@ -114,17 +114,19 @@ class SettingsVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         guard let section = SettingsSections(rawValue: indexPath.section) else { return }
-        let vc = UIViewController()
-        vc.view.backgroundColor = .blue
+ 
         switch section {
         case .General:
             if let option = GeneralOptions(rawValue: indexPath.row) {
                 switch option {
                 case .measurementUnit:
                     let measurementVC = MeasurementUnitVC()
-                    self.navigationController?.pushViewController(measurementVC, animated: true)
+                    self.navigationController?.pushViewController(measurementVC,
+                                                                  animated: true)
                 case .about:
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    let aboutVC = AboutVC()
+                    self.navigationController?.pushViewController(aboutVC,
+                                                                  animated: true)
                 case .notifications:
                     return
                 }
@@ -133,10 +135,11 @@ class SettingsVC: UITableViewController {
             if let option = ProfileOptions(rawValue: indexPath.row) {
                 switch option {
                 case .editProfile:
-                    self.navigationController?.pushViewController(vc, animated: true)
+                    let editProfileVC = EditProfileVC()
+                    self.navigationController?.pushViewController(editProfileVC,
+                                                                  animated: true)
                 case .logout:
-                
-                    logout()
+                    logoutAlert()
                 }
             }
         }
@@ -180,6 +183,18 @@ class SettingsVC: UITableViewController {
         let loginVC = LoginVC(environment: environment)
         loginVC.modalPresentationStyle = .fullScreen
         self.present(loginVC, animated: true, completion: nil)
+    }
+    
+    //TODO: Should i add weak self here?
+    private func logoutAlert() {
+        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+               let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+               let addAction = UIAlertAction(title: "Logout", style: .destructive) { (action) in
+                self.logout()
+               }
+               alert.addAction(addAction)
+               alert.addAction(cancelAction)
+               self.present(alert, animated: true, completion: nil)
     }
 }
 

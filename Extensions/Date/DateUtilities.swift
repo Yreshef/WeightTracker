@@ -20,6 +20,11 @@ extension Date {
         return get(inFormat: "dd.MM.yyyy")
     }
     
+    //TODO: Implement
+    func getInDayWeekday() -> String?{
+        return get(inFormat: "")
+    }
+    
     func get(_ components: Calendar.Component...,
         calendar: Calendar = Calendar.current) -> DateComponents {
         return calendar.dateComponents(Set(components), from: self)
