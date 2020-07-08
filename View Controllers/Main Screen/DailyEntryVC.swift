@@ -29,13 +29,18 @@ class DailyEntryVC: UIViewController {
         weightFacade = environment.weightFacade
         self.environment = environment
         
-        //TODO: Do I want this to be lackadasically (HAHA) loaded?
         dailyEntires = weightFacade.measurementHistory
         
         super.init(nibName: nil, bundle: nil)
         
         dailyEntryView.tableView.delegate = self
         dailyEntryView.tableView.dataSource = self
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(measurementsChanged), name: .MeasurementDidChange, object: nil)
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     required init?(coder: NSCoder) {
@@ -66,7 +71,7 @@ class DailyEntryVC: UIViewController {
     //=============================
     
     internal func numberOfSections(in tableView: UITableView) -> Int {
-        dailyEntires.count
+        return weightFacade.measurementHistory.count
     }
     
     internal func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -86,12 +91,16 @@ class DailyEntryVC: UIViewController {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Implement!
     }
+    
+    //TODO: Add notification to update the table view whenever data is changed
+    
     //TODO: Display an image while waiting for the data being loaded from Core Data
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! EntryCellView
-        cell.dateLabel.text = dailyEntires[indexPath.row].date.readableRepresentation
+        let measurment = weightFacade.measurementHistory[indexPath.section]
+        cell.dateLabel.text = measurment.date.readableRepresentation
         
-        let attributedTitle = NSMutableAttributedString(string: String(dailyEntires[indexPath.row].weight), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
+        let attributedTitle = NSMutableAttributedString(string: String(measurment.weight), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
         attributedTitle.append(NSAttributedString(string: "KG", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.black]))
         
         cell.weightLabel.attributedText = attributedTitle
@@ -120,6 +129,12 @@ class DailyEntryVC: UIViewController {
         dailyEntryView.anchor(to: self.view)
         dailyEntryView.tableView.register(EntryCellView.self, forCellReuseIdentifier: "cellId")
         dailyEntryView.tableView.rowHeight = Constants.tableViewRowHeight        
+    }
+    
+    @objc private func measurementsChanged() {
+        DispatchQueue.main.async {
+            self.dailyEntryView.tableView.reloadData()
+        }
     }
 }
 

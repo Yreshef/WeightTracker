@@ -78,9 +78,9 @@ public final class LoginVC: UIViewController {
                 self.showAlert(title: "Login failed for use", message: "Check if all the fields are correct")
                 return
             }
-            let tabBarVC = TabBarVC(environment: self.enviroment)
-            tabBarVC.modalPresentationStyle = .fullScreen
-            self.present(tabBarVC, animated: true, completion: nil)
+//            let tabBarVC = TabBarVC(environment: self.enviroment)
+//            tabBarVC.modalPresentationStyle = .fullScreen
+//            self.present(tabBarVC, animated: true, completion: nil)
         })
     }
     

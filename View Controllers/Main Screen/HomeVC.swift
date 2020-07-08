@@ -45,8 +45,9 @@ public final class HomeVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+//            self.addNewEntryButtonTapped()
+//        })
     }
     
     // MARK: - Disable Landsacpe
@@ -83,10 +84,9 @@ public final class HomeVC: UIViewController {
         //Get a new weight and date entry from the user
         
         //Store the new entry in the database
-        
+        weightFacade.measure(weight: (Float.random(in: 50...150)))
         //refresh the ui to display the new user's data
-        
-        print("Hello")
+        populateUI(startingWeight: 100, goalWeight: 75, height: 183, currentWeight: 87)
     }
     
     private func populateUI(startingWeight: Float, goalWeight: Float,

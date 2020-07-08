@@ -40,6 +40,7 @@ class WeightFacade: WeightFacadable {
         measurementHistory.append(MeasurementEntry(weight: weight, date: Date()))
         let measurement = MeasurementEntry(weight: weight, date: Date())
         try? databaseFacade.create(measurement: measurement)
+        NotificationCenter.default.post(name: .MeasurementDidChange, object: nil)
     }
     
     func editEntry(date: Date, weight: Weight) throws {
@@ -56,13 +57,11 @@ class WeightFacade: WeightFacadable {
     }
     
     func fetchMeasurementHistory() {
-        //TODO: fetch actual entries form DB.
         let measurements: [MeasurementEntry] = databaseFacade.retrieveAll()
         if measurements.count != 0 {
             measurementHistory.append(contentsOf: measurements)
         } else {
             print("fetchMeasurementHistory: Failed to fetch data, check if the data exists.")
-//            measurementHistory = [MeasurementEntry](repeating: .stub, count: 20)
         }
     }
 }

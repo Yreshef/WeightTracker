@@ -35,3 +35,9 @@ public struct Constants {
     static let headerHeight: CGFloat = 40
 
 }
+
+extension Notification.Name {
+    static let MeasurementDidChange = Notification.Name("MeasurementDidChange")
+    static let UserLoggedIn = Notification.Name("UserLoggedIn")
+    static let UserLoggedOut = Notification.Name("UserLoggedOut")
+}

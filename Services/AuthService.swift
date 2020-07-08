@@ -11,6 +11,22 @@ import Firebase
 import FirebaseAuth
 
 class AuthService: AuthServicable {
+
+    
+    func listenToAuthState() {
+        Auth.auth().addStateDidChangeListener { (auth, user) in
+            if let user = user {
+                print("A user is already logged in with email \(user.email)")
+                NotificationCenter.default.post(name: .UserLoggedIn, object: nil)
+            } else {
+                print("There is no user logged in")
+                NotificationCenter.default.post(name: .UserLoggedOut, object: nil)
+
+            }
+        }
+    }
+    
+    
    
     //TODO: Handle threading 
     var user: Person?
@@ -21,6 +37,7 @@ class AuthService: AuthServicable {
             result, error in
             if let error = error {
                 print("Error! description: \(error.localizedDescription)")
+                completion(nil)
                 return
             } else {
                 if let result = result {
@@ -109,6 +126,7 @@ protocol AuthServicable {
     func editUserDetails()
     func deleteUserAccount()
     func resetUserPassword(with email: String)
+    func listenToAuthState()
 
 }
 

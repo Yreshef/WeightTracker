@@ -137,9 +137,8 @@ class SettingsVC: UITableViewController {
                     self.navigationController?.pushViewController(editProfileVC,
                                                                   animated: true)
                 case .logout:
-                    DispatchQueue.main.async {
-                        self.logoutAlert()
-                    }
+                    self.logoutAlert()
+                    
                 }
             }
         }
@@ -187,14 +186,17 @@ class SettingsVC: UITableViewController {
     
     //TODO: Should i add weak self here?
     private func logoutAlert() {
-        let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-        let addAction = UIAlertAction(title: "Logout", style: .destructive) { (action) in
-            self.logout()
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            let addAction = UIAlertAction(title: "Logout", style: .destructive) { (action) in
+                self.logout()
+            }
+            alert.addAction(addAction)
+            alert.addAction(cancelAction)
+            self.present(alert, animated: true, completion: nil)
         }
-        alert.addAction(addAction)
-        alert.addAction(cancelAction)
-        self.present(alert, animated: true, completion: nil)
+        
     }
 }
 

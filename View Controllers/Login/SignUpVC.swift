@@ -72,9 +72,9 @@ public class SignUpVC: UIViewController {
         //TODO: Fix this! Check if environment is okay here
         authService.signUp(email: email, password: password) { (user) in
             if user != nil {
-                let tabBarVC = TabBarVC(environment: self.environment)
-                tabBarVC.modalPresentationStyle = .fullScreen
-                self.present(tabBarVC, animated: true, completion: nil)
+//                let tabBarVC = TabBarVC(environment: self.environment)
+//                tabBarVC.modalPresentationStyle = .fullScreen
+//                self.present(tabBarVC, animated: true, completion: nil)
             } else {
                 self.showAlert(title: "Oops!", message: "Please fill in all fields")
             }

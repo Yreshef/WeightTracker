@@ -162,6 +162,10 @@ public class HomeView: UIView {
         circleDataView.populateUI(progress: progress, currentWeight: currentWeight)
     }
     
+    func updateDailyProgress(progress: Int, currentWeight: Float) {
+        circleDataView.populateUI(progress: progress, currentWeight: currentWeight)
+    }
+    
     func addNewEntryButtonTarget(target: Any, action: Selector,
                                  for event: UIControl.Event) {
         addButton.addTarget(target, action: action, for: event)

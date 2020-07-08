@@ -104,7 +104,8 @@ public class CircleDataView: UIView {
         let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -(CGFloat.pi / 2), endAngle: 1.5 * CGFloat.pi, clockwise: true)
         circleBorderLayer.path = circularPath.cgPath
         circleBorderLayer.strokeColor = UIColor.blue.cgColor
-        circleBorderLayer.strokeEnd = 1.5 * CGFloat.pi
+//        circleBorderLayer.strokeEnd = 1.5 * CGFloat.pi
+        circleBorderLayer.strokeEnd = 0
         circleBorderLayer.lineWidth = 10
         circleBorderLayer.lineCap = CAShapeLayerLineCap.round
         circleBorderLayer.fillColor = UIColor.clear.cgColor
@@ -132,6 +133,7 @@ public class CircleDataView: UIView {
                           bottom: self.bottomAnchor,
                           trailing: self.trailingAnchor)
         circleView.backgroundColor = .white
+        circleView.layer.addSublayer(circleFillLayer)
         circleView.layer.addSublayer(circleBorderLayer)
         
         //Inner circle clear view
@@ -156,6 +158,21 @@ public class CircleDataView: UIView {
         currentWeightLabel.text = String(currentWeight)
         precentLabel.text = String(progress) + "%"
         // Draw the progress of the user on the circle
-
+        fillCircle(progress: progress)
     }
+    
+    
+    @objc private func fillCircle(progress: Int) {
+        //TODO: Add user progress % and fill accordingly
+        print("Attempting to animate the cricle fill")
+        
+        let fillAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        fillAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        fillAnimation.toValue = Double(progress) / 100
+        fillAnimation.duration = 3
+        fillAnimation.fillMode = CAMediaTimingFillMode.forwards
+        fillAnimation.isRemovedOnCompletion = false
+        circleBorderLayer.add(fillAnimation, forKey: "funTimes")
+    }
+
 }
