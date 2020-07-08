@@ -21,6 +21,7 @@ public class EntryCellView: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupView()
         set(cornerRadius: 5)
+        accessoryType = .disclosureIndicator
     }
     
     required init?(coder: NSCoder) {

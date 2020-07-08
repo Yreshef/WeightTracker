@@ -270,7 +270,7 @@ extension NSManagedObjectContext {
                 try FileManager.default.removeItem(at: url)
                 try self.persistentStoreCoordinator?.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: nil)
             }
-            catch { /*dealing with errors up to the usage*/ }
+            catch { /*dealing with errors up to the user*/ }
         }
     }
 }

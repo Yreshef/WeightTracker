@@ -9,8 +9,6 @@
 import UIKit
 import Firebase
 
-//TODO: (?)Wrap in nav controller and hide bar so you could pop the signup view controller
-//      when you wanna back up to login VC(?)
 public final class LoginVC: UIViewController {
     
     // MARK: - Properties
@@ -19,7 +17,6 @@ public final class LoginVC: UIViewController {
     private let loginScreenView: LoginScreenView = LoginScreenView()
     
     private let weightFacade: WeightFacadable
-    private let databaseFacade: DatabaseFacadable
     private let authService: AuthServicable
     private let enviroment: AppEnvironment
     
@@ -29,19 +26,11 @@ public final class LoginVC: UIViewController {
     init(environment: AppEnvironment) {
         
         self.weightFacade = environment.weightFacade
-        self.databaseFacade = environment.databaseFacade
+        self.authService = environment.authService
         self.enviroment = environment
         
-        self.authService = environment.authService
-        
         super.init(nibName: nil, bundle: nil)
-        
-        view.addSubview(loginScreenView)
-        loginScreenView.anchor(top: view.topAnchor,
-                               leading: view.leadingAnchor,
-                               bottom: view.bottomAnchor,
-                               trailing: view.trailingAnchor)
-        addButtonTarget()
+        setupUI()
     }
     
     
@@ -78,6 +67,7 @@ public final class LoginVC: UIViewController {
     // MARK: - Methods
     //=============================
     
+    //TODO: Ask Dan how to handle this error event. in service or VC?
     @objc private func loginButtonTapped() {
         guard let email = loginScreenView.emailTextField.textField.text, let password = loginScreenView.passwordTextField.textField.text else {
             showAlert(title: "Oops", message: "Please fill in all fields")
@@ -88,7 +78,7 @@ public final class LoginVC: UIViewController {
                 self.showAlert(title: "Login failed for use", message: "Check if all the fields are correct")
                 return
             }
-            let tabBarVC = TabBarVC(environment: self.enviroment) //TODO: Check if its okay to use env. here
+            let tabBarVC = TabBarVC(environment: self.enviroment)
             tabBarVC.modalPresentationStyle = .fullScreen
             self.present(tabBarVC, animated: true, completion: nil)
         })
@@ -119,7 +109,16 @@ public final class LoginVC: UIViewController {
                                                       action: #selector(forgotPasswordButtonTapped),
                                                       for: .touchUpInside)
     }
-
+    
+    private func setupUI() {
+        view.addSubview(loginScreenView)
+        loginScreenView.anchor(top: view.topAnchor,
+                               leading: view.leadingAnchor,
+                               bottom: view.bottomAnchor,
+                               trailing: view.trailingAnchor)
+        addButtonTarget()
+    }
+    
     //TODO: consider writing a show alert service instead of an extension
     //TODO: Add animations
     

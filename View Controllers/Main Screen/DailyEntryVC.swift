@@ -29,14 +29,13 @@ class DailyEntryVC: UIViewController {
         weightFacade = environment.weightFacade
         self.environment = environment
         
+        //TODO: Do I want this to be lackadasically (HAHA) loaded?
         dailyEntires = weightFacade.measurementHistory
         
         super.init(nibName: nil, bundle: nil)
         
         dailyEntryView.tableView.delegate = self
         dailyEntryView.tableView.dataSource = self
-        
-        
     }
     
     required init?(coder: NSCoder) {
@@ -87,10 +86,9 @@ class DailyEntryVC: UIViewController {
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         //TODO: Implement!
     }
-    
+    //TODO: Display an image while waiting for the data being loaded from Core Data
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! EntryCellView
-        
         cell.dateLabel.text = dailyEntires[indexPath.row].date.readableRepresentation
         
         let attributedTitle = NSMutableAttributedString(string: String(dailyEntires[indexPath.row].weight), attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 20), NSAttributedString.Key.foregroundColor: UIColor.black])
@@ -100,12 +98,15 @@ class DailyEntryVC: UIViewController {
         
         return cell
     }
-    //TODO: Implement
+    
     internal func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        //TODO: Implement
+
         return 0
     }
-    //TODO: Implement
+    
     internal func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        //TODO: Implement
         return 0
     }
     
@@ -123,9 +124,6 @@ class DailyEntryVC: UIViewController {
 }
 
 
-extension DailyEntryVC: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-
-}
+extension DailyEntryVC: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource { }
 
 

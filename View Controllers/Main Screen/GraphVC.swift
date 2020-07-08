@@ -14,7 +14,6 @@ public final class GraphVC: UIViewController {
     // MARK: - Properties
     //=============================
     private let weightFacade: WeightFacadable
-    private let databaseFacade: DatabaseFacadable
     private let environment: AppEnvironment
     
     
@@ -24,7 +23,6 @@ public final class GraphVC: UIViewController {
     
     init(environment: AppEnvironment) {
         weightFacade = environment.weightFacade
-        databaseFacade = environment.databaseFacade
         self.environment = environment
         
         super.init(nibName: nil, bundle: nil)
@@ -43,7 +41,6 @@ public final class GraphVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-        createAnEntry()
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -66,19 +63,8 @@ public final class GraphVC: UIViewController {
     
     // MARK: - Methods
     //=============================
-    private func createAnEntry() {
-        let measurement = MeasurementEntry(weight: 10, date: Date())
-        do{
-            try databaseFacade.create(measurement: measurement)
-        } catch {
-            print("Dont do this!")
-        }
-    }
-    private func configureChartData() {
-        //TODO: Implement
-        let measurements: [MeasurementEntry] = databaseFacade.retrieveAll()
-
-    }
+    
+    
 }
 
 //TODO: Ask dan if anything can be implemented in the tabBarVC.

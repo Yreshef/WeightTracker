@@ -15,7 +15,6 @@ class SettingsVC: UITableViewController {
     //=============================
     
     private let weightFacade: WeightFacadable
-    private let databaseFacade: DatabaseFacadable
     private let environment: AppEnvironment
     
     private let settingsCellView = SettingsCellView()
@@ -28,7 +27,6 @@ class SettingsVC: UITableViewController {
     //=============================
     init(environment: AppEnvironment) {
         weightFacade = environment.weightFacade
-        databaseFacade = environment.databaseFacade
         self.environment = environment
         
         super.init(nibName: nil, bundle: nil)
@@ -124,7 +122,7 @@ class SettingsVC: UITableViewController {
                     self.navigationController?.pushViewController(measurementVC,
                                                                   animated: true)
                 case .helpAndFeedback:
-                    let helpAndFeedbackVC = HelpAndFeedbackVC()
+                    let helpAndFeedbackVC = HelpAndFeedbackVC(enviornment: environment)
                     self.navigationController?.pushViewController(helpAndFeedbackVC,
                                                                   animated: true)
                 case .notifications:

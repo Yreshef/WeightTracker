@@ -13,12 +13,19 @@ class HelpAndFeedbackVC: UIViewController {
     // MARK: - Properties
     //=============================
     
+    private let weightFacade: WeightFacadable
+    private let environment: AppEnvironment
+    
     private let helpAndFeedbackView = HelpAndFeedbackView()
     
     // MARK: - Initializers
     //=============================
     
-    init() {
+    init(enviornment: AppEnvironment) {
+        
+        self.weightFacade = enviornment.weightFacade
+        self.environment = enviornment
+        
         super.init(nibName: nil, bundle: nil)
         helpAndFeedbackView.tableView.delegate = self
         helpAndFeedbackView.tableView.dataSource = self

@@ -27,9 +27,7 @@ public class HomeView: UIView {
     init() {
         super.init(frame: .zero)
         backgroundColor = Constants.backgroundColor
-        addSubview(mainStackView)
-        addSubview(bmiStackView)
-        setConstraints()
+        setupUI()
         
     }
     
@@ -60,7 +58,7 @@ public class HomeView: UIView {
         self.goalDataView.backgroundColor = .white
         self.goalDataView.translatesAutoresizingMaskIntoConstraints = false
         self.startDataView.translatesAutoresizingMaskIntoConstraints = false
-
+        
         
         return stackview
     }()
@@ -75,7 +73,7 @@ public class HomeView: UIView {
         
         self.circleDataView.backgroundColor = .white
         self.circleDataView.widthAnchor.constraint(equalTo: stackview.widthAnchor, multiplier: 0.7).isActive = true
-    
+        
         return stackview
     }()
     
@@ -89,6 +87,7 @@ public class HomeView: UIView {
         return stackview
     }()
     
+    //TODO: Decide if i want to implement this
     let title: UILabel = {
         let label = UILabel()
         label.textColor = .white
@@ -104,7 +103,13 @@ public class HomeView: UIView {
         return label
     }()
     
-    let addButton = UIButton()
+    let addButton: UIButton = {
+        let button = UIButton()
+        button.setImage(Constants.plusSignImage, for: .normal)
+        button.backgroundColor = .white
+        //TODO: Make the button round
+        return button
+    }()
     
     
     // MARK: - Methods
@@ -114,8 +119,8 @@ public class HomeView: UIView {
         
         mainStackView.translatesAutoresizingMaskIntoConstraints = false
         mainStackView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
-         mainStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-         mainStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        mainStackView.leadingAnchor.constraint(equalTo: safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        mainStackView.trailingAnchor.constraint(equalTo: safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         mainStackView.heightAnchor.constraint(equalTo: mainStackView.widthAnchor, multiplier: 0.6).isActive = true
         
         circleDataView.clipsToBounds = true
@@ -135,6 +140,19 @@ public class HomeView: UIView {
         
         homeBMIScaleView.clipsToBounds = true
         homeBMIScaleView.layer.cornerRadius = 10
+        
+        addButton.translatesAutoresizingMaskIntoConstraints = false
+        addButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -5).isActive = true
+        addButton.widthAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.heightAnchor.constraint(equalToConstant: 60).isActive = true
+        addButton.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+    }
+    
+    private func setupUI() {
+        addSubview(mainStackView)
+        addSubview(bmiStackView)
+        addSubview(addButton)
+        setConstraints()
     }
     
     func populateUI(startingWeight: Float, goalWeight: Float, bmi: Float, progress: Int, currentWeight: Float) {

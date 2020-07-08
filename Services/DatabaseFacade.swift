@@ -32,16 +32,13 @@ class DatabaseFacade: DatabaseFacadable {
 
     private let coreDataStack: CoreDataLogic
 
-    
     // MARK: - Initializer
     //=============================
     
-    //Dependency Injection
     init(coreDataLogic: CoreDataLogic) {
         self.coreDataStack = coreDataLogic
     }
 
-    
     // MARK: - Methods
     //=============================
 

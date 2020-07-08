@@ -10,9 +10,7 @@ import Foundation
 
 enum HelpAndFeedbackSections: Int, CaseIterable, CustomStringConvertible {
     
-    case Help
-    case Feedback
-    case About
+    case Help, Feedback, About
     
     var description: String {
         switch self {
@@ -37,7 +35,6 @@ enum HelpOptions: Int, CaseIterable, SectionType {
         case .HelpCenter: return true
         }
     }
-    
     
     case HelpCenter
     
@@ -64,10 +61,7 @@ enum FeedbackOptions: Int, CaseIterable, SectionType {
     }
     
     
-    case GiveFeedback
-    case ReportAProblem
-    case SuggestAFeature
-    case RateUs
+    case GiveFeedback, ReportAProblem, SuggestAFeature, RateUs
     
     var description: String {
         switch self {
@@ -93,10 +87,7 @@ enum AboutOptions: Int, CaseIterable, SectionType {
         }
     }
     
-    
-    case ThirdPartyNotices
-    case Privacy
-    case TermsOfUse
+    case ThirdPartyNotices, Privacy, TermsOfUse
     
     var description: String {
         switch self {

@@ -33,7 +33,7 @@ extension AppEnvironment {
     public static func bootstrap() -> AppEnvironment {
         let stack = CoreDataStack(modelName: "WeightTracker")
         return AppEnvironment(databaseFacade: DatabaseFacade(coreDataLogic: stack),
-                              weightFacade: WeightFacade(),
+                              weightFacade: WeightFacade(databaseFacade: DatabaseFacade(coreDataLogic: stack)),
                               coreDataLogic: stack, authService: AuthService())
     }
 }

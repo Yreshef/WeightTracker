@@ -20,8 +20,15 @@ public struct Constants {
     static let emailImage = UIImage(named: "emailWhite")
     static let passwordImage = UIImage(named: "passwordWhite")
     static let userImage = UIImage(named: "userWhite")
-    static let checkmarkImage = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
     
+    static let checkmarkImage = UIImage(systemName: "checkmark", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))
+    static let plusSignImage = UIImage(systemName: "plus", withConfiguration: UIImage.SymbolConfiguration(weight: .regular))?.withTintColor(UIColor(red: 15 / 255, green: 77 / 255, blue: 146 / 255, alpha: 1), renderingMode: .alwaysOriginal)
+    
+    static let tabBarHomeImage = UIImage(named: "home")
+    static let tabBarGraphImage = UIImage(named: "graph")
+    static let tabBarDailyEntryImage = UIImage(named: "list")
+    static let tabBarSettingsImage = UIImage(named: "settings")
+
     // MARK: - Properties
     //=============================
     static let tableViewRowHeight: CGFloat = 50

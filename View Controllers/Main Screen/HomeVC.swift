@@ -14,7 +14,6 @@ public final class HomeVC: UIViewController {
     // MARK: - Properties
     //=============================
     private let weightFacade: WeightFacadable
-    private let databaseFacade: DatabaseFacadable
     private let environment: AppEnvironment
 
     private let homeView = HomeView()
@@ -24,7 +23,6 @@ public final class HomeVC: UIViewController {
     
     init(environment: AppEnvironment) {
         weightFacade = environment.weightFacade
-        databaseFacade = environment.databaseFacade
         self.environment = environment
 
         super.init(nibName: nil, bundle: nil)
@@ -83,8 +81,12 @@ public final class HomeVC: UIViewController {
     @objc private func addNewEntryButtonTapped() {
         //TODO: Implement
         //Get a new weight and date entry from the user
+        
         //Store the new entry in the database
+        
         //refresh the ui to display the new user's data
+        
+        print("Hello")
     }
     
     private func populateUI(startingWeight: Float, goalWeight: Float,
@@ -110,7 +112,7 @@ public final class HomeVC: UIViewController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-
+    
 }
 
 
