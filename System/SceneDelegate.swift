@@ -17,11 +17,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let scene = (scene as? UIWindowScene) else { return }
-        let appDelegate = UIApplication.shared.delegate as? AppDelegate
         self.window = UIWindow(windowScene: scene)
-        self.window?.rootViewController = LoginVC(environment: appDelegate!.environment)
-        self.window?.makeKeyAndVisible()
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserSignedIn), name: .UserLoggedIn, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(onUserSignedOut), name: .UserLoggedOut, object: nil)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -29,6 +29,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This occurs shortly after the scene enters the background, or when its session is discarded.
         // Release any resources associated with this scene that can be re-created the next time the scene connects.
         // The scene may re-connect later, as its session was not neccessarily discarded (see `application:didDiscardSceneSessions` instead).
+        
+        NotificationCenter.default.removeObserver(self)
     }
 
     func sceneDidBecomeActive(_ scene: UIScene) {
@@ -52,6 +54,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
+    // MARK: - Methods
+    //=============================
+    
+    @objc private func onUserSignedIn() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        let tabBarVC = TabBarVC(environment: appDelegate!.environment)
+        tabBarVC.modalPresentationStyle = .fullScreen
+        self.window?.rootViewController = tabBarVC
+    }
 
+    @objc private func onUserSignedOut() {
+        let appDelegate = UIApplication.shared.delegate as? AppDelegate
+        self.window?.rootViewController = LoginVC(environment: appDelegate!.environment)
+    }
 }
 

@@ -19,7 +19,7 @@ protocol DatabaseFacadable{
     func delete(userName: String) throws
     
     func create(measurement: MeasurementEntry) throws
-    func retrieve(day: Int, month: Int, year: Int) -> MeasurementEntry?
+    func retrieve(date: Date) -> MeasurementEntry?
     func retrieveAll() -> [MeasurementEntry]
     func update(measurementEntry: MeasurementEntry) throws
     func delete(date: Date) throws
@@ -32,16 +32,13 @@ class DatabaseFacade: DatabaseFacadable {
 
     private let coreDataStack: CoreDataLogic
 
-    
     // MARK: - Initializer
     //=============================
     
-    //Dependency Injection
     init(coreDataLogic: CoreDataLogic) {
         self.coreDataStack = coreDataLogic
     }
 
-    
     // MARK: - Methods
     //=============================
 
@@ -69,8 +66,8 @@ class DatabaseFacade: DatabaseFacadable {
         try coreDataStack.create(measurement: measurement)
     }
     
-    func retrieve(day: Int, month: Int, year: Int) -> MeasurementEntry? {
-        return coreDataStack.retrieve(day: day, month: month, year: year)
+    func retrieve(date: Date) -> MeasurementEntry? {
+        return coreDataStack.retrieve(date: date)
     }
     
     func retrieveAll() -> [MeasurementEntry] {

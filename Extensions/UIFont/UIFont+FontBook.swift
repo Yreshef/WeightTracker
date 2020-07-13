@@ -9,11 +9,14 @@
 import UIKit
 
 public enum FontBook: String {
-     case Black = "Roboto-Black"
-     case BackItalic = "Roboto-BlackItalic"
-     
-     
-     func of(size: CGFloat) -> UIFont {
+    
+    case robotoBlack = "Roboto-Black"
+    case robotoBackItalic = "Roboto-BlackItalic"
+    case robotoThin = "Roboto-Thin"
+    case robotoLight = "Roboto-Light"
+    
+    
+    func of(size: CGFloat) -> UIFont {
         return UIFont(name: self.rawValue, size: size)!
-     }
- }
+    }
+}

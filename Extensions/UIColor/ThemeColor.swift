@@ -12,6 +12,6 @@ import UIKit
 extension UIColor {
     
     enum App {
-        public static let mainColor: UIColor = UIColor(named: "main") ?? .black 
+        
     }
 }

@@ -19,7 +19,7 @@ class ViewController: UIViewController, UITextFieldDelegate{
     private var modelName = "WeightTracker"
     private let userName = "YohaiReshef"
     
-    private var weightFacade: WeightFacadable = WeightFacade()
+//    private var weightFacade: WeightFacadable = WeightFacade()
     
     
     private var person: Person?
