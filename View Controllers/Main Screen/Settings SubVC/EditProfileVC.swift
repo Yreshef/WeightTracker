@@ -32,7 +32,6 @@ class EditProfileVC: UIViewController {
         view.backgroundColor = Constants.backgroundColor
     }
     
-    
     // MARK: - Methods
     //=============================
 }

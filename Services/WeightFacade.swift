@@ -12,18 +12,26 @@ class WeightFacade: WeightFacadable {
     
     // MARK: - Properties
     //=============================
+
     
-    private let databaseFacade: DatabaseFacade
+    private let databaseFacade: DatabaseFacadable
+    private let authFacade: AuthServicable
+    
+    private var user: Person? {
+        return authFacade.user
+    }
 
     var measurementHistory: [MeasurementEntry] = []
+
     
 //    public static let stub = WeightFacade()
 
     // MARK: - Initializer
     //=============================
 
-    init(databaseFacade: DatabaseFacade) {
+    init(databaseFacade: DatabaseFacadable, authFacade: AuthServicable) {
         self.databaseFacade = databaseFacade
+        self.authFacade = authFacade
         fetchMeasurementHistory()
     }
     
@@ -31,9 +39,9 @@ class WeightFacade: WeightFacadable {
     // MARK: - Methods
     //=============================
     
-    func createPerson(username: String, startingWeight: Weight) {
-        let person = Person(weight: startingWeight, userName: username)
-        try? databaseFacade.create(person: person)
+    func createPerson(username: String, startingWeight: Weight, goalWeight: Weight) -> Person? {
+        let person = Person(weight: startingWeight, userName: username, startingWeight: startingWeight, goalWeight: goalWeight)
+        return try? databaseFacade.create(person: person)
     }
 
     func measure(weight: Weight) {
@@ -72,7 +80,7 @@ class WeightFacade: WeightFacadable {
 protocol WeightFacadable {
     var measurementHistory: [MeasurementEntry] {get}
     func measure(weight: Weight)
-    func createPerson(username: String, startingWeight: Weight)
+    func createPerson(username: String, startingWeight: Weight, goalWeight: Weight) -> Person?
     func fetchMeasurementHistory()
     func deleteEntry(date: Date)
     func editEntry(date: Date, weight: Weight) throws

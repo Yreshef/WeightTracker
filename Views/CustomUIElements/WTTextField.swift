@@ -19,10 +19,8 @@ public class WTTextField: UITextField {
     let tfMinFontSize: CGFloat = 17.0
     let tfBorderStyle: UITextField.BorderStyle = .none
     
-    
     // MARK: - Life Cycle
     //=============================
-
     
     public override init(frame: CGRect) {
         super.init(frame: .zero)
@@ -40,14 +38,11 @@ public class WTTextField: UITextField {
         setupTextField(placeholder: placeholder, font: font,
                        fontSize: fontSize, textColor: textColor,
                        minFontSize: minFontSize, borderStyle: borderStyle)
-        
-        
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - Methods
     //=============================
@@ -61,7 +56,6 @@ public class WTTextField: UITextField {
         
     }
     
-    //TODO: Ask Dan about selfishness
     private func setupTextField(placeholder: String,
                                 font: String,
                                 fontSize: CGFloat,
@@ -77,25 +71,9 @@ public class WTTextField: UITextField {
 }
 
 extension WTTextField {
-    
     func setAttributedText(placeholder: String) {
         self.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
     }
 }
 
-//extension UITextFieldDelegate {
-//
-//    //TODO: Fix this
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//        let placeholder = textField.placeholder ?? ""
-//        textField.placeholder = ""
-//    }
-//
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        let placeholder = ""
-//        if textField.placeholder == ""{
-//            textField.placeholder = placeholder
-//        }
-//    }
-//}
 

@@ -19,9 +19,9 @@ class SettingsVC: UITableViewController {
     
     private let settingsCellView = SettingsCellView()
     
+    //TODO: Move to constants
     private let rowHeight: CGFloat = 50
     private let headerHeight: CGFloat = 40
-    
     
     // MARK: - Initializers
     //=============================
@@ -30,7 +30,6 @@ class SettingsVC: UITableViewController {
         self.environment = environment
         
         super.init(nibName: nil, bundle: nil)
-        
     }
     
     required init?(coder: NSCoder) {
@@ -144,7 +143,6 @@ class SettingsVC: UITableViewController {
         }
     }
     
-    //TODO: Remove the arrow from logout in the settings menu
     // MARK: - Methods
     //=============================
     
@@ -165,7 +163,7 @@ class SettingsVC: UITableViewController {
         }
     }
     
-    //TODO: Ask Dan why this wont work
+    //TODO: Implement this
     private func addButtonTarget() {
         settingsCellView.addSwitchControlTarget(target: self,
                                                 action: #selector(switchControlTapped),
@@ -184,7 +182,7 @@ class SettingsVC: UITableViewController {
         self.present(loginVC, animated: true, completion: nil)
     }
     
-    //TODO: Should i add weak self here?
+    //TODO: Lookup: Should i add weak self here?
     private func logoutAlert() {
         DispatchQueue.main.async {
             let alert = UIAlertController(title: "Logout", message: "Are you sure you want to log out?", preferredStyle: .alert)

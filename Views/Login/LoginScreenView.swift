@@ -17,7 +17,6 @@ public final class LoginScreenView: UIView {
     private let emailImage: UIImage? = UIImage(named: "emailWhite")
     private let passwordImage: UIImage? = UIImage(named: "lockWhite")
     
-    
     // MARK: - Life Cycle
     //=============================
     
@@ -29,10 +28,7 @@ public final class LoginScreenView: UIView {
         addSubview(middleStackView)
         addSubview(forgotPasswordButton)
         addSubview(bottomStackView)
-        setConstraints()
-        setUIElements()
-        setKeyboardType()
-        
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -156,5 +152,11 @@ public final class LoginScreenView: UIView {
         signInButton.setTitle("Log In", for: .normal)
         signInButton.setTitleColor(UIColor(named: "yaleBlue"), for: .normal)
         
+    }
+    
+    private func setupUI() {
+        setConstraints()
+        setKeyboardType()
+        setUIElements()
     }
 }

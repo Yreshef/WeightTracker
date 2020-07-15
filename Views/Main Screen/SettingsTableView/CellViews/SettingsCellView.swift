@@ -21,7 +21,6 @@ public class SettingsCellView: UITableViewCell {
         }
     }
     
-    
     // MARK: - Life Cycle
     //=============================
     
@@ -35,7 +34,6 @@ public class SettingsCellView: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - Subviews
     //=============================
@@ -66,7 +64,6 @@ public class SettingsCellView: UITableViewCell {
         return stackview
     }()
     
-    
     // MARK: - Methods
     //=============================
     
@@ -93,14 +90,6 @@ public class SettingsCellView: UITableViewCell {
         switchControl.isHidden = !type.constainsSwitch
         accessoryType = type.containsArrow ? .disclosureIndicator : .none
     }
-    
-    //    @objc private func handleSwitchAction(sender: UISwitch) {
-    //        if sender.isOn {
-    //            print("Switch is on")
-    //        } else {
-    //            print("Switch is off")
-    //        }
-    //    }
 }
 
 

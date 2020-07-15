@@ -45,9 +45,6 @@ public final class HomeVC: UIViewController {
     
     public override func viewDidLoad() {
         super.viewDidLoad()
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-//            self.addNewEntryButtonTapped()
-//        })
     }
     
     // MARK: - Disable Landsacpe
@@ -112,10 +109,7 @@ public final class HomeVC: UIViewController {
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
     }
-    
 }
-
-
 
 /**
  when a user logs in for the 1st time you ask him for his current weight. that weight will be as is for the reminder of the

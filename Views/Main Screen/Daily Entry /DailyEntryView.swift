@@ -15,7 +15,6 @@ public class DailyEntryView: UIView {
     
     let tableView = EntryTableView()
     
-    
     // MARK: - Initializers
     //=============================
     
@@ -33,12 +32,6 @@ public class DailyEntryView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    
-    // MARK: - Subviews
-    //=============================
-    
-    
     
     // MARK: - Methods
     //=============================

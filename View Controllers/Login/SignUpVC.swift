@@ -22,7 +22,6 @@ public class SignUpVC: UIViewController {
     // MARK: - Initializers
     //=============================
     
-    
     init(environment: AppEnvironment) {
         self.authService = environment.authService
         self.environment = environment
@@ -69,8 +68,7 @@ public class SignUpVC: UIViewController {
                 return
         }
         
-        //TODO: Fix this! Check if environment is okay here
-        authService.signUp(email: email, password: password) { (user) in
+        authService.signUp(email: email, password: password, username: username) { (user) in
             if user != nil {
 //                let tabBarVC = TabBarVC(environment: self.environment)
 //                tabBarVC.modalPresentationStyle = .fullScreen
@@ -96,7 +94,6 @@ public class SignUpVC: UIViewController {
                                                for: .touchUpInside)
     }
     
-    
     private func alertMessage(alertMessage: String) {
         let alertController = UIAlertController(title: "Unable to submit",
                                                 message: "Sorry, your \(alertMessage)s were not matcahing.",
@@ -105,8 +102,6 @@ public class SignUpVC: UIViewController {
         alertController.addAction(okAction)
         self.present(alertController, animated: true)
     }
-    
-    //TODO: Add animations
 }
 
 

@@ -14,8 +14,8 @@ public class CircleDataView: UIView {
     // MARK: - Components
     //=============================
     
+    let cricleFillLayer = CAShapeLayer()
     let circleBorderLayer = CAShapeLayer()
-    let circleFillLayer = CAShapeLayer()
     
     // MARK: - Life Cycle
     //=============================
@@ -39,8 +39,6 @@ public class CircleDataView: UIView {
     // MARK: - Subviews
     //=============================
     
-    
-    /// The view to show the layers for the bezer path
     private let contentView: UIView = {
         let view = UIView()
         view.backgroundColor = .red
@@ -59,14 +57,6 @@ public class CircleDataView: UIView {
         label.text = "69%"
         label.textAlignment = .center
         label.font = .systemFont(ofSize: 15)
-        
-        //TODO: Add background color to spice things up a bit
-//        label.backgroundColor = .white
-//        label.layer.shadowColor = UIColor.black.cgColor
-//        label.layer.shadowOffset = .zero
-//        label.layer.shadowRadius = 1
-//        label.layer.shadowOpacity = 0.4
-//        label.layer.cornerRadius = 25
         
         return label
     }()
@@ -102,22 +92,33 @@ public class CircleDataView: UIView {
     
     private func drawCircle(center: CGPoint, radius: CGFloat) {
         let circularPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -(CGFloat.pi / 2), endAngle: 1.5 * CGFloat.pi, clockwise: true)
-        circleBorderLayer.path = circularPath.cgPath
-        circleBorderLayer.strokeColor = UIColor.blue.cgColor
-//        circleBorderLayer.strokeEnd = 1.5 * CGFloat.pi
-        circleBorderLayer.strokeEnd = 0
-        circleBorderLayer.lineWidth = 10
-        circleBorderLayer.lineCap = CAShapeLayerLineCap.round
-        circleBorderLayer.fillColor = UIColor.clear.cgColor
+        cricleFillLayer.path = circularPath.cgPath
+        cricleFillLayer.strokeColor = UIColor.blue.cgColor
+        cricleFillLayer.strokeEnd = 0
+        cricleFillLayer.lineWidth = 10
+        cricleFillLayer.lineCap = CAShapeLayerLineCap.round
+        cricleFillLayer.fillColor = UIColor.clear.cgColor
         
         let circleFillPath = UIBezierPath(arcCenter: center, radius: radius, startAngle: -(CGFloat.pi / 2), endAngle: 1.5 * CGFloat.pi, clockwise: true)
-        circleFillLayer.path = circleFillPath.cgPath
-        circleFillLayer.strokeColor = UIColor.gray.cgColor
-        circleFillLayer.strokeEnd = 1.5 * CGFloat.pi
-        circleFillLayer.lineWidth = 2
-        circleFillLayer.lineCap = CAShapeLayerLineCap.round
-        circleFillLayer.fillColor = UIColor.clear.cgColor
+        circleBorderLayer.path = circleFillPath.cgPath
+        circleBorderLayer.strokeColor = UIColor.gray.cgColor
+        circleBorderLayer.strokeEnd = 1.5 * CGFloat.pi
+        circleBorderLayer.lineWidth = 2
+        circleBorderLayer.lineCap = CAShapeLayerLineCap.round
+        circleBorderLayer.fillColor = UIColor.clear.cgColor
+    }
+    
+    @objc private func fillCircle(progress: Int) {
+        //TODO: Add user progress % and fill accordingly
+        print("Attempting to animate the cricle fill")
         
+        let fillAnimation = CABasicAnimation(keyPath: "strokeEnd")
+        fillAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
+        fillAnimation.toValue = Double(progress) / 100
+        fillAnimation.duration = 3
+        fillAnimation.fillMode = CAMediaTimingFillMode.forwards
+        fillAnimation.isRemovedOnCompletion = false
+        cricleFillLayer.add(fillAnimation, forKey: "funTimes")
     }
     
     private func getClearViewMultiplier() -> CGFloat {
@@ -133,8 +134,8 @@ public class CircleDataView: UIView {
                           bottom: self.bottomAnchor,
                           trailing: self.trailingAnchor)
         circleView.backgroundColor = .white
-        circleView.layer.addSublayer(circleFillLayer)
         circleView.layer.addSublayer(circleBorderLayer)
+        circleView.layer.addSublayer(cricleFillLayer)
         
         //Inner circle clear view
         addSubview(innerView)
@@ -147,7 +148,6 @@ public class CircleDataView: UIView {
         innerView.heightAnchor.constraint(equalTo: circleView.heightAnchor, multiplier: getClearViewMultiplier()).isActive = true
         innerView.backgroundColor = .clear
         
-        //Stack view
         innerView.addSubview(innerStackView)
         innerStackView.translatesAutoresizingMaskIntoConstraints = false
         innerStackView.centerXAnchor.constraint(equalTo: innerView.centerXAnchor).isActive = true
@@ -160,19 +160,4 @@ public class CircleDataView: UIView {
         // Draw the progress of the user on the circle
         fillCircle(progress: progress)
     }
-    
-    
-    @objc private func fillCircle(progress: Int) {
-        //TODO: Add user progress % and fill accordingly
-        print("Attempting to animate the cricle fill")
-        
-        let fillAnimation = CABasicAnimation(keyPath: "strokeEnd")
-        fillAnimation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeInEaseOut)
-        fillAnimation.toValue = Double(progress) / 100
-        fillAnimation.duration = 3
-        fillAnimation.fillMode = CAMediaTimingFillMode.forwards
-        fillAnimation.isRemovedOnCompletion = false
-        circleBorderLayer.add(fillAnimation, forKey: "funTimes")
-    }
-
 }

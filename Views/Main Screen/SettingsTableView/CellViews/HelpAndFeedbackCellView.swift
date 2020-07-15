@@ -21,7 +21,6 @@ public class HelpAndFeedbackCellView: UITableViewCell {
         }
     }
     
-    
     // MARK: - Life Cycle
     //=============================
     
@@ -36,7 +35,6 @@ public class HelpAndFeedbackCellView: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Subviews
     //=============================
     
@@ -45,7 +43,6 @@ public class HelpAndFeedbackCellView: UITableViewCell {
         label.textColor = .black
         return label
     }()
-    
     
     // MARK: - Methods
     //=============================
@@ -61,7 +58,6 @@ public class HelpAndFeedbackCellView: UITableViewCell {
         nameLabel.leftAnchor.constraint(equalTo: leftAnchor, constant: 12).isActive = true
         nameLabel.rightAnchor.constraint(equalTo: rightAnchor, constant: -12).isActive = true
     }
-    
     
     func setup(type: SectionType){
         textLabel?.text = type.description

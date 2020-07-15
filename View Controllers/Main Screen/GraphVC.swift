@@ -15,9 +15,7 @@ public final class GraphVC: UIViewController {
     //=============================
     private let weightFacade: WeightFacadable
     private let environment: AppEnvironment
-    
-    
-    
+
     // MARK: - Initializers
     //=============================
     
@@ -26,14 +24,10 @@ public final class GraphVC: UIViewController {
         self.environment = environment
         
         super.init(nibName: nil, bundle: nil)
-//        view.addSubview(graphView)
-//        graphView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: view.trailingAnchor)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
-        let graphView = GraphView(coder: coder)
-
     }
     
     // MARK: - View Life Cycle

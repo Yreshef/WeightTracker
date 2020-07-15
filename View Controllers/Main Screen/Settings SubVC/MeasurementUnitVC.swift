@@ -15,9 +15,7 @@ class MeasurementUnitVC: UITableViewController {
     
     private let measurementUnitCellView = MeasurementUnitCellView()
     
-    private let rowHeight: CGFloat = 50
-    private let headerHeight: CGFloat = 40
-    
+    //TODO: Change this for scalability
     private let options = ["KG", "LBS"]
     
     // MARK: - Initializers
@@ -30,7 +28,6 @@ class MeasurementUnitVC: UITableViewController {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - View Life Cycle
     //=============================
@@ -73,9 +70,8 @@ class MeasurementUnitVC: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerHeight
+        return Constants.headerHeight
     }
-    
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -90,7 +86,7 @@ class MeasurementUnitVC: UITableViewController {
 
     private func setupUI() {
        tableView.register(MeasurementUnitCellView.self, forCellReuseIdentifier: "cellId")
-       tableView.rowHeight = rowHeight
+        tableView.rowHeight = Constants.tableViewRowHeight
         
     }
 }

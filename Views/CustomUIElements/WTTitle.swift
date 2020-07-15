@@ -67,8 +67,5 @@ public class WTTitle: UILabel {
         font = UIFont(name: fontName, size: fontSize)
         textColor = titleColor
         textAlignment = textAlignment
-        
-        
     }
-      
 }

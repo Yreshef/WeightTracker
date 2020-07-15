@@ -31,8 +31,11 @@ public struct Constants {
 
     // MARK: - Properties
     //=============================
+    
     static let tableViewRowHeight: CGFloat = 50
+    
     static let headerHeight: CGFloat = 40
+    static let headerSpacingBetweenCells: CGFloat = 10
 
 }
 

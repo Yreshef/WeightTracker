@@ -28,11 +28,7 @@ public final class SignUpScreenView: UIView {
         
         addSubview(middleStackView)
         addSubview(bottomStackView)
-        
-        setConstraints()
-        setUIElements()
-        setKeyboardType()
-        
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -138,6 +134,12 @@ public final class SignUpScreenView: UIView {
         
     }
     
+    private func setupUI(){
+        setConstraints()
+        setUIElements()
+        setKeyboardType()
+    }
+    
     public func addSignUpButtonTarget(target: Any,
                                       action: Selector,
                                       for event: UIControl.Event){
@@ -151,6 +153,8 @@ public final class SignUpScreenView: UIView {
     }
 }
 
+// MARK: - Extensions
+//=============================
 
 extension SignUpScreenView: UITextFieldDelegate {
     

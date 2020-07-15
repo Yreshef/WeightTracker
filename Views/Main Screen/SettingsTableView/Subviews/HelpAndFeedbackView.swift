@@ -16,7 +16,6 @@ public class HelpAndFeedbackView: UIView {
     
     let tableView = HelpAndFeedbackTableView()
     
-    
     // MARK: - Initializers
     //=============================
     
@@ -30,11 +29,6 @@ public class HelpAndFeedbackView: UIView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-    
-    
-    
-    // MARK: - Subviews
-    //=============================
     
     // MARK: - Methods
     //=============================

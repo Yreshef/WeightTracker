@@ -12,7 +12,6 @@ import Foundation
 
 public class WTButton: UIButton {
     
-    
     // MARK: - Components
     //=============================
 
@@ -23,7 +22,6 @@ public class WTButton: UIButton {
     private let borderColor: UIColor = .white
     private let borderWidth: CGFloat = 1.0
     private let cornerRadius: CGFloat = 5.0
-    
     
     // MARK: - Life Cycle
     //=============================
@@ -64,8 +62,6 @@ public class WTButton: UIButton {
                          borderColor: borderColor.cgColor, borderWidth: borderWidth, cornerRadius: cornerRadius)
     }
     
-    //TODO: check why font size wont change
-    
     private func setupButton(fontName: String,
                              fontSize: CGFloat,
                              titleColor: UIColor,
@@ -81,7 +77,7 @@ public class WTButton: UIButton {
         layer.borderWidth = borderWidth
         set(cornerRadius: cornerRadius)
     }
-   
+
     private func setShadow() {
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOffset = CGSize(width: 0.0, height: 6.0)
@@ -92,7 +88,6 @@ public class WTButton: UIButton {
     }
     
 }
-//TODO: Move the animation to extension Layer {}
 extension WTButton {
     
     // MARK: - Animations

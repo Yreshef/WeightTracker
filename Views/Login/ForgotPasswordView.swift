@@ -26,9 +26,7 @@ public class ForgotPasswordView: UIView {
         addSubview(mainStackView)
         addSubview(bottomStackView)
         
-        setConstraint()
-        setUIElements()
-        setKeyboardType()
+        setupUI()
     }
     
     required init?(coder: NSCoder) {
@@ -88,7 +86,7 @@ public class ForgotPasswordView: UIView {
         return stackview
     }()
 
-    
+    //TODO: Fix submit button height 
     
     
     // MARK: - Methods
@@ -136,5 +134,11 @@ public class ForgotPasswordView: UIView {
         submitButton.setTitleColor(UIColor(named: "yaleBlue"), for: .normal)
         submitButton.backgroundColor = .white
         
+    }
+    
+    private func setupUI(){
+        setConstraint()
+        setUIElements()
+        setKeyboardType()
     }
 }

@@ -10,10 +10,6 @@ import UIKit
 
 public final class HomeDataView: UIView {
     
-    // MARK: - Components
-    //=============================
-    
-    
     // MARK: - Life Cycle
     //=============================
     
@@ -71,8 +67,6 @@ public final class HomeDataView: UIView {
         
         return stackview
     }()
-    
-    
     
     // MARK: - Methods
     //=============================
