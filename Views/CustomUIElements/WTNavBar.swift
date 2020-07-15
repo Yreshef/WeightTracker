@@ -18,15 +18,11 @@ class WTNavBar: UINavigationBar {
     let usernameTextView = UITextView()
     let dateTextView = UITextView()
     
-    
     let barHeight: CGFloat = 34
     let barWidth: CGFloat = 34
     let username = ""
     let date: String = Date().getInEuropeanDateFormat() ?? "Date error"
     let userImageView = UIImageView(image: #imageLiteral(resourceName: "placeholderUserImage"))
-    
-    
-    
     
     // MARK: - Life Cycle
     //=============================
@@ -43,10 +39,7 @@ class WTNavBar: UINavigationBar {
     //=============================
 
     private func setupNavigationBarItems() {
-        
         usernameTextView.text = "Yohai"
         dateTextView.text = "Date: \(Date().getInEuropeanDateFormat() ?? "N/A")"
-        
-        
     }
 }

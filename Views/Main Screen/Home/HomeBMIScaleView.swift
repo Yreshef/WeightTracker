@@ -11,10 +11,6 @@ import UIKit
 
 public class HomeBMIScaleView: UIView {
     
-    // MARK: - Components
-    //=============================
-    
-
     // MARK: - Life Cycle
     //=============================
     init() {
@@ -33,15 +29,6 @@ public class HomeBMIScaleView: UIView {
     
     // MARK: - Subviews
     //=============================
-    
-
-    
-//    private let bmiSlider: UISlider = {
-//        let slider = UISlider()
-//        slider.tintColor = UIColor.green
-//
-//        return slider
-//    }()
         
     // MARK: - Methods
     //=============================

@@ -31,7 +31,6 @@ public class EntryTableView: UITableView {
         return tableview
     }()
     
-    
     // MARK: - Methods
     //=============================
     

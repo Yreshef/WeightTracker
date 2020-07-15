@@ -15,13 +15,10 @@ class DailyEntryVC: UIViewController {
     private let weightFacade: WeightFacadable
     private let environment: AppEnvironment
     
-    
     private let dailyEntryView = DailyEntryView()
     private let entryCellView = EntryCellView()
     
     private var dailyEntires: [MeasurementEntry]
-    
-    private let headerSpacingBetweenCells: CGFloat = 10
     
     // MARK: - Initializers
     //=============================
@@ -81,7 +78,7 @@ class DailyEntryVC: UIViewController {
     }
     
     internal func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return headerSpacingBetweenCells
+        return Constants.headerSpacingBetweenCells
     }
     
     internal func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -89,11 +86,10 @@ class DailyEntryVC: UIViewController {
     }
     
     internal func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //TODO: Implement!
+        //TODO: Implement an edit and save entry functionality
     }
     
     //TODO: Add notification to update the table view whenever data is changed
-    
     //TODO: Display an image while waiting for the data being loaded from Core Data
     internal func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as! EntryCellView
@@ -118,9 +114,7 @@ class DailyEntryVC: UIViewController {
         //TODO: Implement
         return 0
     }
-    
-    
-    
+
     // MARK: - Methods
     //=============================
     
@@ -138,7 +132,11 @@ class DailyEntryVC: UIViewController {
     }
 }
 
+// MARK: - Extensions
+//=============================
 
-extension DailyEntryVC: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource { }
+extension DailyEntryVC: UITableViewDelegate, UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+}
 
 

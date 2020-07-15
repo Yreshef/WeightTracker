@@ -117,6 +117,8 @@ class HelpAndFeedbackVC: UIViewController {
     }
 }
 
+// MARK: - Extensions
+//=============================
 
 extension HelpAndFeedbackVC: UITableViewDelegate, UITableViewDataSource {
     

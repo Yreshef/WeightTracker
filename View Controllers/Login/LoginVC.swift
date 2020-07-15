@@ -13,12 +13,13 @@ public final class LoginVC: UIViewController {
     
     // MARK: - Properties
     //=============================
-    
     private let loginScreenView: LoginScreenView = LoginScreenView()
     
     private let weightFacade: WeightFacadable
     private let authService: AuthServicable
     private let enviroment: AppEnvironment
+    
+    var person: Person?
     
     // MARK: - Initializers
     //=============================
@@ -33,11 +34,9 @@ public final class LoginVC: UIViewController {
         setupUI()
     }
     
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - View Life Cycle
     //=============================
@@ -51,7 +50,6 @@ public final class LoginVC: UIViewController {
         #endif
     }
     
-    
     // MARK: - Disable Landsacpe
     //=============================
     
@@ -63,35 +61,32 @@ public final class LoginVC: UIViewController {
         return .portrait
     }
     
-    
     // MARK: - Methods
     //=============================
     
-    //TODO: Ask Dan how to handle this error event. in service or VC?
     @objc private func loginButtonTapped() {
         guard let email = loginScreenView.emailTextField.textField.text, let password = loginScreenView.passwordTextField.textField.text else {
             showAlert(title: "Oops", message: "Please fill in all fields")
             return
         }
         authService.signIn(email: email, password: password, completion: { [unowned self] user in
-            guard let user = user else {
+            guard let user = user, let username = user.displayName else {
                 self.showAlert(title: "Login failed for use", message: "Check if all the fields are correct")
                 return
             }
-//            let tabBarVC = TabBarVC(environment: self.enviroment)
-//            tabBarVC.modalPresentationStyle = .fullScreen
-//            self.present(tabBarVC, animated: true, completion: nil)
         })
     }
     
     @objc private func userSignupButtonTapped() {
-        // Transition to SignUpVC
+        
         let signUpVC = SignUpVC(environment: enviroment)
         signUpVC.modalPresentationStyle = .fullScreen
         self.present(signUpVC, animated: true, completion: nil)
+        
     }
     
     @objc private func forgotPasswordButtonTapped() {
+        
         //TODO: validate that user exists
         let forgotPasswordVC = ForgotPasswordVC(environment: enviroment)
         forgotPasswordVC.modalPresentationStyle = .fullScreen
@@ -118,11 +113,10 @@ public final class LoginVC: UIViewController {
                                trailing: view.trailingAnchor)
         addButtonTarget()
     }
-    
-    //TODO: consider writing a show alert service instead of an extension
-    //TODO: Add animations
-    
 }
+
+// MARK: - Extensions
+//=============================
 
 extension UIViewController {
     

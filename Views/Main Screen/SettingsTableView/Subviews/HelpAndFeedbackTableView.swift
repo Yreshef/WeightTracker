@@ -10,11 +10,7 @@ import UIKit
 
 
 public class HelpAndFeedbackTableView: UITableView {
-    
-    // MARK: - Components
-    //=============================
-    
-    
+
     // MARK: - Initializers
     //=============================
     

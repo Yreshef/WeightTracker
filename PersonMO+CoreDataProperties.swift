@@ -18,6 +18,8 @@ extension PersonMO {
 
     @NSManaged public var userName: String?
     @NSManaged public var weight: Float
+    @NSManaged public var startingWeight: Float
+    @NSManaged public var goalWeight: Float
     @NSManaged public var measurementHistory: NSOrderedSet?
 
 }

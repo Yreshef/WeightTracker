@@ -30,10 +30,12 @@ class AppEnvironment {
 
 extension AppEnvironment {
     
+    //TODO: Ask Dan if databaseFacade's initialization should be different
     public static func bootstrap() -> AppEnvironment {
         let stack = CoreDataStack(modelName: "WeightTracker")
-        return AppEnvironment(databaseFacade: DatabaseFacade(coreDataLogic: stack),
-                              weightFacade: WeightFacade(databaseFacade: DatabaseFacade(coreDataLogic: stack)),
-                              coreDataLogic: stack, authService: AuthService())
+        let databaseFacade = DatabaseFacade(coreDataLogic: stack)
+        let authenticationFacade = AuthService(databaseFacade: databaseFacade)
+        let weightFacade = WeightFacade(databaseFacade: databaseFacade, authFacade: authenticationFacade)
+        return AppEnvironment(databaseFacade: databaseFacade, weightFacade: weightFacade, coreDataLogic: stack, authService: authenticationFacade)
     }
 }

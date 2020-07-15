@@ -8,6 +8,9 @@
 
 import Foundation
 
+// MARK: - Help&Feedback Sections
+//===============================
+
 enum HelpAndFeedbackSections: Int, CaseIterable, CustomStringConvertible {
     
     case Help, Feedback, About
@@ -24,6 +27,9 @@ enum HelpAndFeedbackSections: Int, CaseIterable, CustomStringConvertible {
         
     }
 }
+
+// MARK: - Help Options
+//=============================
 
 enum HelpOptions: Int, CaseIterable, SectionType {
     var constainsSwitch: Bool {
@@ -45,6 +51,9 @@ enum HelpOptions: Int, CaseIterable, SectionType {
         }
     }
 }
+
+// MARK: - Feedback Options
+//=============================
 
 enum FeedbackOptions: Int, CaseIterable, SectionType {
     var constainsSwitch: Bool {
@@ -72,6 +81,9 @@ enum FeedbackOptions: Int, CaseIterable, SectionType {
         }
     }
 }
+
+// MARK: - About Options
+//=============================
 
 enum AboutOptions: Int, CaseIterable, SectionType {
     

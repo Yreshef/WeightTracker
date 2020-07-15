@@ -8,12 +8,8 @@
 
 import Foundation
 
-protocol SectionType: CustomStringConvertible{
-    var constainsSwitch: Bool { get }
-    var containsArrow: Bool { get }
-}
-
-
+// MARK: - Settings Sections
+//=============================
 
 enum SettingsSections: Int, CaseIterable, CustomStringConvertible {
     
@@ -31,6 +27,8 @@ enum SettingsSections: Int, CaseIterable, CustomStringConvertible {
 }
 
 
+// MARK: - General Options
+//=============================
 
 enum GeneralOptions: Int, CaseIterable, SectionType {
    
@@ -64,6 +62,9 @@ enum GeneralOptions: Int, CaseIterable, SectionType {
     }
 }
 
+// MARK: - Profile Options
+//=============================
+
 enum ProfileOptions: Int, CaseIterable, SectionType {
     
     var containsArrow: Bool {
@@ -84,4 +85,12 @@ enum ProfileOptions: Int, CaseIterable, SectionType {
         case .logout: return "Logout"
         }
     }
+}
+
+// MARK: - Protocol
+//=============================
+
+protocol SectionType: CustomStringConvertible{
+    var constainsSwitch: Bool { get }
+    var containsArrow: Bool { get }
 }

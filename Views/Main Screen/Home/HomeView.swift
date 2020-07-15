@@ -20,7 +20,6 @@ public class HomeView: UIView {
     let goalDataView = HomeDataView(title: "Goal", weight: "0")
     let homeBMIScaleView = HomeBMIScaleView()
     
-    
     // MARK: - Initializers
     //=============================
     
@@ -155,6 +154,7 @@ public class HomeView: UIView {
         setConstraints()
     }
     
+    //TODO: Review
     func populateUI(startingWeight: Float, goalWeight: Float, bmi: Float, progress: Int, currentWeight: Float) {
         startDataView.populateUI(weight: startingWeight)
         goalDataView.populateUI(weight: goalWeight)

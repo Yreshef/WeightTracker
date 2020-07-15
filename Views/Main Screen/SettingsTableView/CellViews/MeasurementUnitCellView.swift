@@ -25,7 +25,6 @@ public class MeasurementUnitCellView: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     // MARK: - Subviews
     //=============================
     
@@ -45,7 +44,6 @@ public class MeasurementUnitCellView: UITableViewCell {
                 
         return stackview
     }()
-    
     
     // MARK: - Methods
     //=============================

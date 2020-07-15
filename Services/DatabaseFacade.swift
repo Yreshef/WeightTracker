@@ -9,22 +9,6 @@
 import Foundation
 import CoreData
 
-
-protocol DatabaseFacadable{
-    
-    func create(person: Person) throws
-    func retrieve(userName: String) -> Person?
-    func retrieveAll() -> [Person]
-    func update(person: Person) throws
-    func delete(userName: String) throws
-    
-    func create(measurement: MeasurementEntry) throws
-    func retrieve(date: Date) -> MeasurementEntry?
-    func retrieveAll() -> [MeasurementEntry]
-    func update(measurementEntry: MeasurementEntry) throws
-    func delete(date: Date) throws
-}
-
 class DatabaseFacade: DatabaseFacadable {
     
     // MARK: - Properties
@@ -42,8 +26,10 @@ class DatabaseFacade: DatabaseFacadable {
     // MARK: - Methods
     //=============================
 
-    func create(person: Person) throws {
-        try coreDataStack.create(person: person)
+    @discardableResult
+    func create(person: Person) throws -> Person? {
+        return try coreDataStack.create(person: person)
+        
     }
     
     func retrieve(userName: String) -> Person? {
@@ -81,7 +67,23 @@ class DatabaseFacade: DatabaseFacadable {
     func delete(date: Date) throws {
         try coreDataStack.delete(date: date)
     }
+}
+
+// MARK: - Protocol
+//=============================
+
+protocol DatabaseFacadable{
     
+    @discardableResult
+    func create(person: Person) throws -> Person?
+    func retrieve(userName: String) -> Person?
+    func retrieveAll() -> [Person]
+    func update(person: Person) throws
+    func delete(userName: String) throws
     
-    
+    func create(measurement: MeasurementEntry) throws
+    func retrieve(date: Date) -> MeasurementEntry?
+    func retrieveAll() -> [MeasurementEntry]
+    func update(measurementEntry: MeasurementEntry) throws
+    func delete(date: Date) throws
 }

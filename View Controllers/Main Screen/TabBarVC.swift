@@ -16,7 +16,7 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     
     private let weightFacade: WeightFacadable
     private let environment: AppEnvironment
-  
+    
     // MARK: - Initializers
     //=============================
     
@@ -49,7 +49,6 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
     override func viewDidLoad() {
         super.viewDidLoad()
         self.delegate = self
-        UINavigationBar.appearance().prefersLargeTitles = true
         setupTabBar()
     }
     
@@ -74,10 +73,14 @@ class TabBarVC: UITabBarController, UITabBarControllerDelegate{
         dailyInputVC.tabBarItem.image = Constants.tabBarDailyEntryImage
         settingsVC.tabBarItem.image = Constants.tabBarSettingsImage
         
-        viewControllers = [homeVC,
+        viewControllers = [UINavigationController(rootViewController: homeVC),
                            graphVC,
                            dailyInputVC,
                            UINavigationController(rootViewController: settingsVC)]
+        
+        
+        UINavigationBar.appearance().prefersLargeTitles = true
+        UINavigationBar.appearance().largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
 

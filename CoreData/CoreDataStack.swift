@@ -63,7 +63,7 @@ class CoreDataStack: CoreDataLogic{
         guard let userName = personMO.userName else{
             return nil
         }
-        let person = Person(weight: personMO.weight, userName: userName)
+        let person = Person(weight: personMO.weight, userName: userName, startingWeight: personMO.startingWeight, goalWeight: personMO.goalWeight)
         return person
     }
     
@@ -71,6 +71,9 @@ class CoreDataStack: CoreDataLogic{
         let personMO = PersonMO(context: managedContext)
         personMO.weight = person.weight
         personMO.userName = person.userName
+        
+        personMO.startingWeight = person.startingWeight
+        personMO.goalWeight = person.goalWeight
         return personMO
     }
     
@@ -107,6 +110,8 @@ class CoreDataStack: CoreDataLogic{
         let measurementMO = MeasurementMO(context: managedContext)
         measurementMO.weight = measurement.weight
         measurementMO.date = measurement.date
+        //TODO: Implement
+        measurementMO.person = nil
         return measurementMO
     }
     
@@ -143,11 +148,12 @@ class CoreDataStack: CoreDataLogic{
 
 extension CoreDataStack {
     
-    func create(person: Person) throws {
+    func create(person: Person) throws -> Person?{
         let personMO = convert(person: person)
         try saveContext()
         
         //TODO: return the person
+        return person
     }
     
     func retrieve(userName: String) -> Person? {
@@ -223,9 +229,12 @@ extension CoreDataStack {
     }
 }
 
+// MARK: - Protocol
+//=============================
+
 protocol CoreDataLogic{
     
-    func create(person: Person) throws
+    func create(person: Person) throws -> Person?
     func retrieve(userName: String) -> Person?
     func retrieveAll() -> [Person]
     func update(person: Person) throws
@@ -250,6 +259,9 @@ enum CoreDataError: LocalizedError {
         }
     }
 }
+
+// MARK: - Extensions
+//=============================
 
 extension NSManagedObjectContext {
     func deleteAllData()
